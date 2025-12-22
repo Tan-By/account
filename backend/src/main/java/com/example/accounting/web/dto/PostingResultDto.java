@@ -18,3 +18,4 @@ public class PostingResultDto {
     private String message;
 }
 
+

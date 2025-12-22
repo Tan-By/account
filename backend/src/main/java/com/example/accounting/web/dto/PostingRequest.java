@@ -17,3 +17,4 @@ public class PostingRequest {
     private List<Long> voucherIds;
 }
 
+
