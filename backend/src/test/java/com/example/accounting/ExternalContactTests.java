@@ -45,11 +45,11 @@ public class ExternalContactTests {
         mockMvc.perform(post("/api/external-contacts/" + created.getId() + "/deactivate"))
                 .andExpect(status().isNoContent());
 
-        // 再次用相同税号创建活跃联系人应失败（返回 500，带错误信息）
+        // 再次用相同税号创建联系人（前一个已停用），应允许成功创建新的活跃联系人
         mockMvc.perform(post("/api/external-contacts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
-                .andExpect(status().is5xxServerError());
+                .andExpect(status().isOk());
     }
 }
 

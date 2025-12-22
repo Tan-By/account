@@ -1,0 +1,4 @@
+com\example\accounting\TaxAndUserTests.class
+com\example\accounting\ExternalContactTests.class
+com\example\accounting\InitializationAndTransactionTests.class
+com\example\accounting\ReportAndReconciliationTests.class

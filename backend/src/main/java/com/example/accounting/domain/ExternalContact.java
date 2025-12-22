@@ -22,7 +22,13 @@ public class ExternalContact {
     @Column(nullable = false, length = 32)
     private String type; // 供应商 | 客户 | ...
 
-    @Column(length = 32, unique = true)
+    /**
+     * 纳税人识别号
+     * 业务规则：在“活跃”状态下唯一，因此这里不加数据库唯一约束，
+     * 由业务代码通过 findByTaxIdAndStatus('活跃') 保证逻辑唯一性，
+     * 这样在停用旧联系人后可以创建同税号的新联系人。
+     */
+    @Column(length = 32)
     private String taxId;
 
     @Column(length = 256)

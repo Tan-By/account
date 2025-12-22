@@ -22,6 +22,15 @@
         <java.version>17</java.version>
     </properties>
 
+    <!-- 显式声明插件仓库，避免本地 settings.xml 中镜像配置异常导致 spring-boot 插件找不到 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
