@@ -22,7 +22,11 @@
         <div class="form-row">
           <div class="form-col">
             <label class="form-label">默认币种</label>
-            <input v-model="currencyCode" placeholder="CNY" />
+            <select v-model="currencyCode">
+              <option v-for="curr in currencies" :key="curr.code" :value="curr.code">
+                {{ curr.code }} - {{ curr.name }}
+              </option>
+            </select>
           </div>
           <div class="form-col">
             <label class="form-label">启用日期</label>
@@ -57,8 +61,14 @@
                   <option value="EXPENSE">费用</option>
                 </select>
               </td>
-              <td><input v-model="row.currencyCode" style="width: 70px" /></td>
-              <td><input v-model.number="row.initialBalance" type="number" style="width: 90px" /></td>
+              <td>
+                <select v-model="row.currencyCode" style="width: 100px">
+                  <option v-for="curr in currencies" :key="curr.code" :value="curr.code">
+                    {{ curr.code }}
+                  </option>
+                </select>
+              </td>
+              <td><input v-model.number="row.initialBalance" type="number" step="0.01" style="width: 90px" /></td>
             </tr>
           </tbody>
         </table>
@@ -74,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { api } from '../api';
 
 interface InitRow {
@@ -88,6 +98,7 @@ interface InitRow {
 const companyName = ref('示例企业');
 const currencyCode = ref('CNY');
 const startDate = ref<string>(new Date().toISOString().slice(0, 10));
+const currencies = ref<Array<{ code: string; name: string }>>([]);
 
 const rows = ref<InitRow[]>([
   { code: '1001', name: '现金', type: 'ASSET', currencyCode: 'CNY', initialBalance: 1000 },
@@ -96,6 +107,23 @@ const rows = ref<InitRow[]>([
 
 const message = ref('');
 const messageType = ref<'ok' | 'error'>('ok');
+
+const loadCurrencies = async () => {
+  try {
+    const resp = await api.get('/currencies');
+    currencies.value = resp.data.map((curr: any) => ({
+      code: curr.code,
+      name: curr.name
+    }));
+    if (currencies.value.length > 0 && !currencies.value.find(c => c.code === currencyCode.value)) {
+      currencyCode.value = currencies.value[0].code;
+    }
+  } catch (e) {
+    console.error('加载币种失败:', e);
+  }
+};
+
+onMounted(loadCurrencies);
 
 const doInit = async () => {
   try {

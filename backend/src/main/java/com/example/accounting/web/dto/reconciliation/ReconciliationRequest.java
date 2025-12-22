@@ -18,6 +18,8 @@ public class ReconciliationRequest {
     private LocalDate periodEnd;
 
     private String executor;
+    
+    private String displayCurrency;
 }
 
 

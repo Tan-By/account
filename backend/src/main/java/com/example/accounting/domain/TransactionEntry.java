@@ -31,7 +31,7 @@ public class TransactionEntry {
     @Column(nullable = false, length = 8)
     private DebitCredit debitCredit;
 
-    @Column(nullable = false, precision = 19, scale = 4)
+    @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal amount;
 }
 

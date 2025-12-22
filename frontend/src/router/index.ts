@@ -8,17 +8,76 @@ import ReconciliationView from '../views/ReconciliationView.vue';
 import TaxView from '../views/TaxView.vue';
 import UsersView from '../views/UsersView.vue';
 import ContactsView from '../views/ContactsView.vue';
+import PostingView from '../views/PostingView.vue';
+import LoginView from '../views/LoginView.vue';
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', name: 'dashboard', component: Dashboard },
-  { path: '/init', name: 'init', component: InitCompany },
-  { path: '/accounts', name: 'accounts', component: AccountsView },
-  { path: '/transactions', name: 'transactions', component: TransactionsView },
-  { path: '/reports', name: 'reports', component: ReportsView },
-  { path: '/reconciliation', name: 'reconciliation', component: ReconciliationView },
-  { path: '/tax', name: 'tax', component: TaxView },
-  { path: '/users', name: 'users', component: UsersView },
-  { path: '/contacts', name: 'contacts', component: ContactsView }
+  { 
+    path: '/login', 
+    name: 'login', 
+    component: LoginView,
+    meta: { requiresAuth: false }
+  },
+  { 
+    path: '/', 
+    name: 'dashboard', 
+    component: Dashboard,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/init', 
+    name: 'init', 
+    component: InitCompany,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/accounts', 
+    name: 'accounts', 
+    component: AccountsView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/transactions', 
+    name: 'transactions', 
+    component: TransactionsView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/posting', 
+    name: 'posting', 
+    component: PostingView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/reports', 
+    name: 'reports', 
+    component: ReportsView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/reconciliation', 
+    name: 'reconciliation', 
+    component: ReconciliationView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/tax', 
+    name: 'tax', 
+    component: TaxView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/users', 
+    name: 'users', 
+    component: UsersView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/contacts', 
+    name: 'contacts', 
+    component: ContactsView,
+    meta: { requiresAuth: true }
+  }
 ];
 
 export default routes;

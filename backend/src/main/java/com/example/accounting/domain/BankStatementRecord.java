@@ -29,13 +29,13 @@ public class BankStatementRecord {
     @Column(length = 256)
     private String description;
 
-    @Column(precision = 19, scale = 4)
+    @Column(precision = 19, scale = 2)
     private BigDecimal debitAmount;
 
-    @Column(precision = 19, scale = 4)
+    @Column(precision = 19, scale = 2)
     private BigDecimal creditAmount;
 
-    @Column(precision = 19, scale = 4)
+    @Column(precision = 19, scale = 2)
     private BigDecimal balance;
 
     @Column(length = 64)

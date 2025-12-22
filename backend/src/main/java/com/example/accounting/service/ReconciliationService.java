@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -20,15 +22,21 @@ public class ReconciliationService {
     private final BankStatementRecordRepository bankStatementRecordRepository;
     private final TransactionEntryRepository transactionEntryRepository;
     private final ReconciliationTaskRepository reconciliationTaskRepository;
+    private final CurrencyRepository currencyRepository;
+    private final ExchangeRateRepository exchangeRateRepository;
 
     public ReconciliationService(AccountRepository accountRepository,
                                  BankStatementRecordRepository bankStatementRecordRepository,
                                  TransactionEntryRepository transactionEntryRepository,
-                                 ReconciliationTaskRepository reconciliationTaskRepository) {
+                                 ReconciliationTaskRepository reconciliationTaskRepository,
+                                 CurrencyRepository currencyRepository,
+                                 ExchangeRateRepository exchangeRateRepository) {
         this.accountRepository = accountRepository;
         this.bankStatementRecordRepository = bankStatementRecordRepository;
         this.transactionEntryRepository = transactionEntryRepository;
         this.reconciliationTaskRepository = reconciliationTaskRepository;
+        this.currencyRepository = currencyRepository;
+        this.exchangeRateRepository = exchangeRateRepository;
     }
 
     @Transactional
@@ -73,6 +81,17 @@ public class ReconciliationService {
 
         BigDecimal bankBalance = bankAccount.getBalance(); // 简化：直接使用账面余额作为银行余额
         BigDecimal bookBalance = bankAccount.getBalance();
+        
+        // 如果指定了显示币种，则转换余额
+        Currency displayCurr = null;
+        if (request.getDisplayCurrency() != null && !request.getDisplayCurrency().isEmpty()) {
+            displayCurr = currencyRepository.findByCode(request.getDisplayCurrency()).orElse(null);
+        }
+        if (displayCurr != null && !bankAccount.getCurrency().getId().equals(displayCurr.getId())) {
+            LocalDate today = LocalDate.now();
+            bankBalance = convert(bankBalance, bankAccount.getCurrency(), displayCurr, today);
+            bookBalance = convert(bookBalance, bankAccount.getCurrency(), displayCurr, today);
+        }
 
         // 未达账项汇总（简化：只按数量统计，不细分四种类型）
         BigDecimal diff = bankBalance.subtract(bookBalance);
@@ -96,6 +115,18 @@ public class ReconciliationService {
         result.setAdjustedBookBalance(bookBalance.add(diff));
         result.setAdjustedBankBalance(bankBalance);
         return result;
+    }
+    
+    private BigDecimal convert(BigDecimal amount, Currency from, Currency to, LocalDate date) {
+        if (from.getId().equals(to.getId()) || amount.compareTo(BigDecimal.ZERO) == 0) {
+            return amount;
+        }
+        Optional<ExchangeRate> rateOpt = exchangeRateRepository
+                .findTopByFromCurrencyAndToCurrencyAndRateDateLessThanEqualOrderByRateDateDesc(from, to, date);
+        if (rateOpt.isEmpty()) {
+            return amount;
+        }
+        return amount.multiply(rateOpt.get().getRate());
     }
 }
 

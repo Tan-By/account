@@ -184,6 +184,19 @@ body {
   gap: 8px;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.user-name {
+  font-size: 13px;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
 .btn {
   border: none;
   outline: none;
@@ -221,6 +234,11 @@ body {
 
 .btn--ghost:hover {
   background: rgba(60, 64, 67, 0.06);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .card {
@@ -322,7 +340,8 @@ select:focus {
   color: #1e8e3e;
 }
 
-.badge--warn {
+.badge--warn,
+.badge--warning {
   border-color: #f9ab00;
   color: #f9ab00;
 }
@@ -330,6 +349,13 @@ select:focus {
 .badge--error {
   border-color: #d93025;
   color: #d93025;
+}
+
+.badge--info {
+  border-color: #1a73e8;
+  color: #1a73e8;
+  background: #1a73e8;
+  color: white;
 }
 
 .pill-group {
@@ -351,6 +377,111 @@ select:focus {
   background: #ffffff;
   color: var(--accent);
   box-shadow: 0 1px 2px rgba(60, 64, 67, 0.2);
+}
+
+// 记账历史样式
+.history-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin-bottom: 12px;
+  background: var(--bg-surface);
+  transition: box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+}
+
+.history-item:hover {
+  box-shadow: 0 2px 4px rgba(60, 64, 67, 0.1);
+  border-color: var(--accent);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.history-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.history-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  min-width: 90px;
+}
+
+.history-description {
+  font-size: 13px;
+  color: var(--text-main);
+  font-weight: 500;
+  flex: 1;
+}
+
+.history-id {
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.history-table {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.history-table th {
+  background: #f8f9fa;
+  font-weight: 500;
+}
+
+.history-table td {
+  padding: 8px;
+}
+
+.history-table tfoot {
+  border-top: 2px solid var(--border-subtle);
+  background: #f8f9fa;
+}
+
+.history-table tfoot td {
+  font-weight: 600;
+  padding: 10px 8px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+// 加载状态
+.loading-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.empty-state::before {
+  content: "📋";
+  display: block;
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
 }
 
 

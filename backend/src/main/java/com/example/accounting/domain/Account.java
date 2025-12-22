@@ -55,7 +55,7 @@ public class Account {
     /**
      * 当前余额（以账户本币计量）
      */
-    @Column(nullable = false, precision = 19, scale = 4)
+    @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal balance = BigDecimal.ZERO;
 
     /**

@@ -2,6 +2,7 @@ package com.example.accounting.web.controller;
 
 import com.example.accounting.service.ReportService;
 import com.example.accounting.web.dto.report.BalanceSheetDto;
+import com.example.accounting.web.dto.report.CashFlowStatementDto;
 import com.example.accounting.web.dto.report.ProfitReportDto;
 import com.example.accounting.web.dto.report.ReportRequest;
 import jakarta.validation.Valid;
@@ -27,6 +28,11 @@ public class ReportController {
     @PostMapping("/balance-sheet")
     public ResponseEntity<BalanceSheetDto> balanceSheet(@Valid @RequestBody ReportRequest request) {
         return ResponseEntity.ok(reportService.generateBalanceSheet(request));
+    }
+
+    @PostMapping("/cash-flow")
+    public ResponseEntity<CashFlowStatementDto> cashFlow(@Valid @RequestBody ReportRequest request) {
+        return ResponseEntity.ok(reportService.generateCashFlowStatement(request));
     }
 }
 

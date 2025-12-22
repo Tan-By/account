@@ -1,10 +1,14 @@
+com\example\accounting\util\JwtUtil.class
+com\example\accounting\web\controller\AuthController.class
 com\example\accounting\web\controller\ReconciliationController.class
 com\example\accounting\web\dto\report\ReportRequest.class
+com\example\accounting\web\dto\auth\LoginRequest.class
 com\example\accounting\domain\TaxDeclaration.class
 com\example\accounting\web\dto\init\InitializationRequest.class
 com\example\accounting\web\dto\tax\TaxDeclarationRequest.class
 com\example\accounting\config\SecurityConfig.class
 com\example\accounting\web\controller\CurrencyController.class
+com\example\accounting\config\AdminUserInitializer.class
 com\example\accounting\domain\BankStatementRecord.class
 com\example\accounting\domain\UserAccount.class
 com\example\accounting\service\TransactionService.class
@@ -43,9 +47,12 @@ com\example\accounting\domain\Transaction.class
 com\example\accounting\repository\ExternalContactRepository.class
 com\example\accounting\service\InitializationService.class
 com\example\accounting\web\controller\UserController.class
+com\example\accounting\web\dto\auth\LoginResponse.class
 com\example\accounting\repository\TaxDeclarationRepository.class
 com\example\accounting\repository\TransactionEntryRepository.class
 com\example\accounting\repository\RoleRepository.class
+com\example\accounting\config\UserDetailsServiceImpl.class
+com\example\accounting\config\JwtAuthenticationFilter.class
 com\example\accounting\repository\ReconciliationTaskRepository.class
 com\example\accounting\service\TaxDeclarationService.class
 com\example\accounting\web\dto\report\BalanceSheetDto.class

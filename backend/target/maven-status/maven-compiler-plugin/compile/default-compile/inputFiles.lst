@@ -1,5 +1,8 @@
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\AccountingApplication.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\config\AdminUserInitializer.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\config\JwtAuthenticationFilter.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\config\SecurityConfig.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\config\UserDetailsServiceImpl.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\domain\Account.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\domain\BankStatementRecord.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\domain\Company.java
@@ -32,7 +35,9 @@ D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\service\TaxDeclarationService.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\service\TransactionService.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\service\UserService.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\util\JwtUtil.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\AccountController.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\AuthController.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\CurrencyController.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\ExternalContactController.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\InitializationController.java
@@ -42,6 +47,8 @@ D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\TransactionController.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\controller\UserController.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\dto\AccountDto.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\dto\auth\LoginRequest.java
+D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\dto\auth\LoginResponse.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\dto\ExternalContactDto.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\dto\init\InitAccountDto.java
 D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\src\main\java\com\example\accounting\web\dto\init\InitializationRequest.java

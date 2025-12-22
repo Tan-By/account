@@ -1,5 +1,8 @@
 <template>
-  <div class="app-shell">
+  <div v-if="route.path === '/login'" class="login-wrapper">
+    <RouterView />
+  </div>
+  <div v-else class="app-shell">
     <aside class="app-shell__sidebar">
       <div class="app-title">
         <div class="app-title__badge">
@@ -48,6 +51,16 @@
             >
               <span class="nav-link__bullet"></span>
               记账（凭证）
+            </RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink
+              to="/posting"
+              class="nav-link"
+              :class="{ 'nav-link--active': isActive('/posting') }"
+            >
+              <span class="nav-link__bullet"></span>
+              凭证过账
             </RouterLink>
           </li>
           <li class="nav-item">
@@ -119,8 +132,14 @@
         <div style="font-size: 14px; font-weight: 500;">示例账套（本地 H2）</div>
       </div>
       <div class="toolbar">
+        <div class="user-info" v-if="userName">
+          <span class="user-name">{{ userName }}</span>
+        </div>
         <button class="btn btn--ghost" @click="refreshCurrent">
           刷新
+        </button>
+        <button class="btn btn--ghost" @click="handleLogout" v-if="userName">
+          登出
         </button>
       </div>
     </header>
@@ -133,11 +152,34 @@
   </div>
 </template>
 
+<style scoped>
+.login-wrapper {
+  min-height: 100vh;
+}
+</style>
+
 <script setup lang="ts">
+import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter, RouterLink, RouterView } from 'vue-router';
+import { logout } from './api';
 
 const route = useRoute();
 const router = useRouter();
+
+const userName = ref<string>('');
+
+const updateUserName = () => {
+  userName.value = localStorage.getItem('name') || localStorage.getItem('username') || '';
+};
+
+onMounted(() => {
+  updateUserName();
+});
+
+// 监听路由变化，更新用户名显示
+watch(() => route.path, () => {
+  updateUserName();
+});
 
 const isActive = (path: string) => {
   return route.path === path;
@@ -147,6 +189,12 @@ const refreshCurrent = () => {
   router.replace({ path: '/_refresh' }).then(() => {
     router.replace(route.fullPath);
   });
+};
+
+const handleLogout = () => {
+  logout();
+  userName.value = '';
+  router.push('/login');
 };
 </script>
 

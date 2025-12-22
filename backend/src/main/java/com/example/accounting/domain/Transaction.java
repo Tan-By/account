@@ -1,5 +1,6 @@
 package com.example.accounting.domain;
 
+import com.example.accounting.domain.enums.VoucherStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,13 @@ public class Transaction {
      */
     @Column(nullable = false, length = 256)
     private String description;
+
+    /**
+     * 凭证状态：未审核/已审核/已过账
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 16)
+    private VoucherStatus status = VoucherStatus.UNAUDITED;
 
     /**
      * 分录集合（借方/贷方行）

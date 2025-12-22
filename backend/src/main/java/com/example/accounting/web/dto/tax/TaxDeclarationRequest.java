@@ -17,6 +17,8 @@ public class TaxDeclarationRequest {
 
     @NotNull
     private LocalDate periodEnd;
+    
+    private String displayCurrency;
 }
 
 
