@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -13,7 +14,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
+@Import(TestSecurityConfig.class)
 public class ExternalContactTests {
 
     @Autowired
@@ -31,7 +33,7 @@ public class ExternalContactTests {
 
         String json = objectMapper.writeValueAsString(dto);
 
-        String resp = mockMvc.perform(post("/api/external-contacts")
+        String resp = mockMvc.perform(post("/external-contacts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
@@ -42,11 +44,11 @@ public class ExternalContactTests {
         ExternalContactDto created = objectMapper.readValue(resp, ExternalContactDto.class);
 
         // 停用
-        mockMvc.perform(post("/api/external-contacts/" + created.getId() + "/deactivate"))
+        mockMvc.perform(post("/external-contacts/" + created.getId() + "/deactivate"))
                 .andExpect(status().isNoContent());
 
         // 再次用相同税号创建联系人（前一个已停用），应允许成功创建新的活跃联系人
-        mockMvc.perform(post("/api/external-contacts")
+        mockMvc.perform(post("/external-contacts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk());

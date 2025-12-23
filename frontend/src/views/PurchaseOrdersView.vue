@@ -13,13 +13,22 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-subtitle" style="margin-bottom: 8px; font-size: 12px; color: var(--text-muted);">
+    <div class="card card--panel fade-in hover-lift">
+      <div class="card-subtitle" style="margin-bottom: 8px;">
         说明：本页进行<b>业务审批</b>和收货操作；<b>会计审核与过账</b>请在「凭证过账」功能中完成。
       </div>
       <div v-if="loading" class="loading-state">加载中...</div>
-      <div v-else-if="orders.length === 0" class="empty-state">暂无订货单数据</div>
-      <table v-else>
+      <div v-else-if="orders.length === 0" class="empty-hero">
+        <div class="empty-hero__icon">📦</div>
+        <div class="empty-hero__title">暂无订货单数据</div>
+        <div class="empty-hero__subtitle">
+          点击右上角「＋ 新建订货单」开始创建第一张采购订单。
+        </div>
+        <button class="btn btn--primary btn--pill empty-hero__action" @click="openCreate">
+          新建订货单
+        </button>
+      </div>
+      <table v-else class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th>订单编号</th>
@@ -37,7 +46,7 @@
             <td>{{ order.supplierName }}</td>
             <td>{{ formatDate(order.orderDate) }}</td>
             <td>{{ formatDate(order.deliveryDate) }}</td>
-            <td class="text-right">{{ formatAmount(order.totalAmount) }}</td>
+            <td class="text-right numeric">{{ formatAmount(order.totalAmount) }}</td>
             <td>
               <span class="badge" :class="getStatusBadgeClass(order.status)">
                 {{ getStatusText(order.status) }}
@@ -45,31 +54,31 @@
             </td>
             <td>
               <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-                <button class="btn btn--ghost" @click="view(order)">查看</button>
+                <button class="btn btn--ghost btn--pill btn--small" @click="view(order)">查看</button>
                 <button
                   v-if="order.status === 'DRAFT'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="edit(order)"
                 >
                   编辑
                 </button>
                 <button
                   v-if="order.status === 'DRAFT'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="submit(order)"
                 >
                   提交审批
                 </button>
                 <button
                   v-if="order.status === 'PENDING_APPROVAL'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="openApprove(order)"
                 >
                   审批
                 </button>
                 <button
                   v-if="order.status === 'APPROVED' || order.status === 'PARTIAL_DELIVERY'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="openDelivery(order)"
                 >
                   收货
@@ -82,13 +91,13 @@
     </div>
 
     <!-- 错误提示 -->
-    <div v-if="errorMessage" class="card" style="margin-top: 10px; background: #fce8e6; border-color: #d93025;">
-      <div style="color: #d93025; font-size: 13px;">{{ errorMessage }}</div>
+    <div v-if="errorMessage" class="card card--panel fade-in" style="margin-top: 10px; background: #fff5f4; border-color: var(--negative); color: var(--negative);">
+      <div style="font-size: 13px;">{{ errorMessage }}</div>
     </div>
 
     <!-- 创建/编辑订货单：子窗口 -->
     <div v-if="editing" class="modal-overlay" @click.self="editing = null">
-      <div class="modal-content">
+      <div class="modal-content modal-content--xl pop-in">
         <div class="modal-header">
           <h3 class="modal-title">{{ editing.id ? '编辑订货单' : '新建订货单' }}</h3>
           <button class="modal-close" @click="editing = null">×</button>
@@ -115,11 +124,11 @@
           </div>
 
           <div style="margin-top: 16px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div class="card__section-head" style="margin-bottom: 8px;">
               <strong>订单明细</strong>
-              <button class="btn btn--ghost" @click="addItem">添加商品</button>
+              <button class="btn btn--ghost btn--pill btn--small" @click="addItem">添加商品</button>
             </div>
-            <table>
+            <table class="sheet-table table-compact table-quiet">
               <thead>
                 <tr>
                   <th>商品名称</th>
@@ -170,7 +179,7 @@
                       placeholder="单价"
                     />
                   </td>
-                  <td class="text-right">{{ formatAmount(Number(item.quantity || 0) * Number(item.unitPrice || 0)) }}</td>
+                  <td class="text-right numeric">{{ formatAmount(Number(item.quantity || 0) * Number(item.unitPrice || 0)) }}</td>
                   <td>
                     <button class="btn btn--ghost" @click="removeItem(idx)">删除</button>
                   </td>
@@ -179,7 +188,7 @@
               <tfoot>
                 <tr>
                   <td colspan="3"><strong>订单总金额</strong></td>
-                  <td class="text-right"><strong>{{ formatAmount(calculateTotal()) }}</strong></td>
+                  <td class="text-right numeric"><strong>{{ formatAmount(calculateTotal()) }}</strong></td>
                   <td></td>
                 </tr>
               </tfoot>
@@ -195,7 +204,7 @@
 
     <!-- 审批对话框 -->
     <div v-if="approvingOrder" class="modal-overlay" @click.self="approvingOrder = null">
-      <div class="modal-content">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <h3 class="modal-title">审批订货单：{{ approvingOrder.orderNumber }}</h3>
           <button class="modal-close" @click="approvingOrder = null">×</button>
@@ -218,7 +227,7 @@
 
     <!-- 收货对话框 -->
     <div v-if="deliveringOrder" class="modal-overlay" @click.self="deliveringOrder = null">
-      <div class="modal-content">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <h3 class="modal-title">收货操作：{{ deliveringOrder.orderNumber }}</h3>
           <button class="modal-close" @click="deliveringOrder = null">×</button>
@@ -262,7 +271,7 @@
 
     <!-- 查看详情对话框 -->
     <div v-if="viewingOrder" class="modal-overlay" @click.self="viewingOrder = null">
-      <div class="modal-content">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <h3 class="modal-title">订货单详情：{{ viewingOrder.orderNumber }}</h3>
           <button class="modal-close" @click="viewingOrder = null">×</button>

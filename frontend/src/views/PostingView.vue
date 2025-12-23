@@ -8,7 +8,7 @@
       <div class="toolbar">
         <button 
           v-if="activeTab === 'audited'"
-          class="btn btn--primary" 
+          class="btn btn--primary btn--pill" 
           @click="executePosting" 
           :disabled="selectedVouchers.length === 0 || posting"
         >
@@ -16,7 +16,7 @@
         </button>
         <button 
           v-if="activeTab === 'unaudited'"
-          class="btn btn--primary" 
+          class="btn btn--primary btn--pill" 
           @click="executeAudit" 
           :disabled="selectedVouchers.length === 0 || auditing"
         >
@@ -35,30 +35,30 @@
     </div>
 
     <!-- 标签页 -->
-    <div style="display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--border-subtle);">
+    <div class="pill-switch" style="margin-bottom: 16px;">
       <button 
-        class="tab-button" 
-        :class="{ 'tab-button--active': activeTab === 'unaudited' }"
+        class="pill-switch__btn"
+        :class="{ 'is-active': activeTab === 'unaudited' }"
         @click="activeTab = 'unaudited'"
       >
         未审核凭证 ({{ unauditedVouchers.length }})
       </button>
       <button 
-        class="tab-button" 
-        :class="{ 'tab-button--active': activeTab === 'audited' }"
+        class="pill-switch__btn"
+        :class="{ 'is-active': activeTab === 'audited' }"
         @click="activeTab = 'audited'"
       >
         已审核凭证 ({{ pendingVouchers.length }})
       </button>
     </div>
 
-    <div class="card">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h3 style="margin: 0; font-size: 16px; font-weight: 500;">
+    <div class="card card--panel fade-in hover-lift">
+      <div class="card__section-head">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 600;">
           <span v-if="activeTab === 'unaudited'">待审核凭证列表（状态：未审核）</span>
           <span v-else>待过账凭证列表（状态：已审核）</span>
         </h3>
-        <span v-if="currentVouchers.length > 0" style="font-size: 12px; color: var(--text-muted);">
+        <span v-if="currentVouchers.length > 0" class="card-subtitle">
           共 {{ currentVouchers.length }} 张凭证
         </span>
       </div>
@@ -67,13 +67,23 @@
         加载中...
       </div>
 
-      <div v-else-if="currentVouchers.length === 0" class="empty-state">
-        <span v-if="activeTab === 'unaudited'">暂无待审核凭证</span>
-        <span v-else>暂无待过账凭证</span>
+      <div
+        v-else-if="currentVouchers.length === 0"
+        class="empty-hero"
+        style="margin: 16px auto 8px;"
+      >
+        <div class="empty-hero__icon">📑</div>
+        <div class="empty-hero__title">
+          <span v-if="activeTab === 'unaudited'">暂无待审核凭证</span>
+          <span v-else>暂无待过账凭证</span>
+        </div>
+        <div class="empty-hero__subtitle">
+          先在「记账」中录入业务凭证，并完成审核后，这里会显示需要过账的项目。
+        </div>
       </div>
 
       <div v-else>
-        <table>
+        <table class="sheet-table table-compact table-quiet">
           <thead>
             <tr>
               <th style="width: 40px;">
@@ -109,17 +119,15 @@
               </td>
               <td>
                 <button 
-                  class="btn btn--ghost" 
+                  class="btn btn--ghost btn--pill btn--small" 
                   @click="viewVoucherDetail(voucher)"
-                  style="font-size: 12px; padding: 4px 8px; margin-right: 4px;"
                 >
                   查看详情
                 </button>
                 <button 
                   v-if="activeTab === 'unaudited' && voucher.status === 'UNAUDITED'"
-                  class="btn btn--ghost" 
+                  class="btn btn--ghost btn--pill btn--small" 
                   @click="auditSingleVoucher(voucher.id)"
-                  style="font-size: 12px; padding: 4px 8px;"
                 >
                   审核
                 </button>
@@ -128,15 +136,14 @@
           </tbody>
         </table>
 
-        <div v-if="selectedVouchers.length > 0" style="margin-top: 16px; padding: 12px; background: var(--bg-subtle); border-radius: 8px;">
+        <div v-if="selectedVouchers.length > 0" class="card--ghost hover-lift" style="margin-top: 16px; padding: 12px; border-radius: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 14px; color: var(--text-muted);">
+            <span class="card-subtitle" style="font-size: 13px;">
               已选择 {{ selectedVouchers.length }} 张凭证
             </span>
             <button 
-              class="btn btn--ghost" 
+              class="btn btn--ghost btn--pill btn--small" 
               @click="selectedVouchers = []"
-              style="font-size: 12px;"
             >
               清空选择
             </button>
@@ -147,24 +154,24 @@
 
     <!-- 凭证详情对话框 -->
     <div v-if="selectedVoucherDetail" class="modal-overlay" @click="selectedVoucherDetail = null">
-      <div class="modal-content" @click.stop>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-          <h3 style="margin: 0; font-size: 18px; font-weight: 500;">凭证详情 #{{ selectedVoucherDetail.id }}</h3>
-          <button class="btn btn--ghost" @click="selectedVoucherDetail = null" style="font-size: 20px; padding: 0; width: 32px; height: 32px;">×</button>
+      <div class="modal-content modal-content--md pop-in" @click.stop>
+        <div class="card__section-head" style="margin-bottom: 8px;">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 600;">凭证详情 #{{ selectedVoucherDetail.id }}</h3>
+          <button class="btn btn--ghost btn--pill btn--small" @click="selectedVoucherDetail = null" style="font-size: 14px; padding: 4px 10px;">关闭</button>
         </div>
-        <div style="margin-bottom: 12px;">
+        <div class="card-subtitle" style="margin-bottom: 12px;">
           <strong>日期：</strong>{{ formatDate(selectedVoucherDetail.date) }}
         </div>
-        <div style="margin-bottom: 12px;">
+        <div class="card-subtitle" style="margin-bottom: 12px;">
           <strong>摘要：</strong>{{ selectedVoucherDetail.description || '（无摘要）' }}
         </div>
-        <div style="margin-bottom: 12px;">
+        <div class="card-subtitle" style="margin-bottom: 12px;">
           <strong>状态：</strong>
           <span class="badge badge--info">{{ getStatusText(selectedVoucherDetail.status) }}</span>
         </div>
         <div v-if="selectedVoucherDetail.entries && selectedVoucherDetail.entries.length > 0">
           <strong style="display: block; margin-bottom: 8px;">分录：</strong>
-          <table>
+          <table class="sheet-table table-compact table-quiet">
             <thead>
               <tr>
                 <th>账户</th>
@@ -175,14 +182,14 @@
             <tbody>
               <tr v-for="entry in selectedVoucherDetail.entries" :key="entry.id">
                 <td>{{ entry.accountName }}（{{ entry.currencyCode }}）</td>
-                <td class="text-right">
-                  <span v-if="entry.debitCredit === 'DEBIT'" style="color: #1e8e3e; font-weight: 500;">
+                <td class="text-right numeric">
+                  <span v-if="entry.debitCredit === 'DEBIT'" class="text-success" style="font-weight: 600;">
                     {{ formatAmount(convertAmount(entry.amount)) }}
                   </span>
                   <span v-else style="color: var(--text-muted);">-</span>
                 </td>
-                <td class="text-right">
-                  <span v-if="entry.debitCredit === 'CREDIT'" style="color: #d93025; font-weight: 500;">
+                <td class="text-right numeric">
+                  <span v-if="entry.debitCredit === 'CREDIT'" class="text-danger" style="font-weight: 600;">
                     {{ formatAmount(convertAmount(entry.amount)) }}
                   </span>
                   <span v-else style="color: var(--text-muted);">-</span>

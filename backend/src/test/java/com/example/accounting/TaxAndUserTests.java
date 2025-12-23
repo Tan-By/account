@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -19,7 +20,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
+@Import(TestSecurityConfig.class)
 public class TaxAndUserTests {
 
     @Autowired
@@ -38,7 +40,7 @@ public class TaxAndUserTests {
 
         String taxJson = objectMapper.writeValueAsString(taxReq);
 
-        mockMvc.perform(post("/api/tax-declarations/draft")
+        mockMvc.perform(post("/tax-declarations/draft")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(taxJson))
                 .andExpect(status().isOk())
@@ -47,19 +49,20 @@ public class TaxAndUserTests {
                 .getContentAsString();
 
         // 简化：不解析返回体，直接假设ID=1，测试接口连通性
-        mockMvc.perform(post("/api/tax-declarations/1/submit"))
+        mockMvc.perform(post("/tax-declarations/1/submit"))
                 .andExpect(status().isOk());
 
         // 用户管理：创建用户
         UserDto user = new UserDto();
         user.setName("管理员");
-        user.setUsername("admin");
+        // 使用不会与系统默认管理员冲突的测试用户名
+        user.setUsername("admin_test");
         user.setPassword("password");
         user.setRoles(Set.of("SYSTEM_ADMIN"));
 
         String userJson = objectMapper.writeValueAsString(user);
 
-        String userResp = mockMvc.perform(post("/api/users")
+        String userResp = mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(userJson))
                 .andExpect(status().isOk())
@@ -73,17 +76,17 @@ public class TaxAndUserTests {
         created.setDepartment("财务部");
         String updateJson = objectMapper.writeValueAsString(created);
 
-        mockMvc.perform(put("/api/users/" + created.getId())
+        mockMvc.perform(put("/users/" + created.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(updateJson))
                 .andExpect(status().isOk());
 
         // 禁用用户
-        mockMvc.perform(post("/api/users/" + created.getId() + "/disable"))
+        mockMvc.perform(post("/users/" + created.getId() + "/disable"))
                 .andExpect(status().isNoContent());
 
         // 查询用户列表
-        mockMvc.perform(get("/api/users"))
+        mockMvc.perform(get("/users"))
                 .andExpect(status().isOk());
     }
 }

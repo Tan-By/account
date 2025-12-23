@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/external-contacts")
+@RequestMapping("/external-contacts")
 @CrossOrigin
 public class ExternalContactController {
 

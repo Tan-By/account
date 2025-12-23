@@ -16,19 +16,19 @@
       </div>
     </div>
 
-    <div class="init-grid">
-      <div class="card">
+    <div class="init-grid fade-in">
+      <div class="card card--panel">
         <div class="card-title">账套信息</div>
         <div class="form-row">
           <div class="form-col">
             <label class="form-label">企业名称</label>
-            <input v-model="companyName" placeholder="例如：XX科技有限公司" />
+            <input v-model="companyName" placeholder="例如：XX科技有限公司" class="table-input" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-col">
             <label class="form-label">默认币种</label>
-            <select v-model="currencyCode">
+            <select v-model="currencyCode" class="table-input">
               <option v-for="curr in currencies" :key="curr.code" :value="curr.code">
                 {{ curr.code }} - {{ curr.name }}
               </option>
@@ -36,18 +36,18 @@
           </div>
           <div class="form-col">
             <label class="form-label">启用日期</label>
-            <input type="date" v-model="startDate" />
+            <input type="date" v-model="startDate" class="table-input" />
           </div>
         </div>
       </div>
 
-      <div class="card">
+      <div class="card card--panel">
         <div class="card-title">期初科目与余额</div>
         <div class="card-subtitle">
           请确保：资产合计 = 负债合计 + 权益合计，且收入/费用类科目期初余额为 0
         </div>
         <div class="init-table-wrap">
-          <table>
+          <table class="sheet-table table-compact table-quiet">
             <thead>
               <tr>
                 <th>编码</th>
@@ -59,10 +59,10 @@
             </thead>
             <tbody>
               <tr v-for="(row, idx) in rows" :key="idx">
-                <td><input v-model="row.code" style="width: 80px" /></td>
-                <td><input v-model="row.name" /></td>
+                <td><input v-model="row.code" style="width: 80px" class="table-input" /></td>
+                <td><input v-model="row.name" class="table-input" /></td>
                 <td>
-                  <select v-model="row.type">
+                  <select v-model="row.type" class="table-input">
                     <option value="ASSET">资产</option>
                     <option value="LIABILITY">负债</option>
                     <option value="EQUITY">权益</option>
@@ -71,7 +71,7 @@
                   </select>
                 </td>
                 <td>
-                  <select v-model="row.currencyCode" style="width: 100px">
+                  <select v-model="row.currencyCode" style="width: 100px" class="table-input">
                     <option v-for="curr in currencies" :key="curr.code" :value="curr.code">
                       {{ curr.code }}
                     </option>
@@ -82,36 +82,37 @@
                     v-model.number="row.initialBalance"
                     type="number"
                     step="0.01"
-                    style="width: 90px; margin-right: 4px;"
+                    class="table-input numeric"
+                    style="width: 110px; margin-right: 4px;"
                   />
-                  <button class="btn btn--ghost btn--small" @click="removeRow(idx)">删行</button>
+                  <button class="btn btn--ghost btn--small btn--pill" @click="removeRow(idx)">删行</button>
                 </td>
               </tr>
             </tbody>
             <tfoot>
               <tr>
                 <td colspan="4"><strong>资产合计</strong></td>
-                <td>{{ assetTotal.toFixed(2) }}</td>
+                <td class="numeric text-success">{{ assetTotal.toFixed(2) }}</td>
               </tr>
               <tr>
                 <td colspan="4"><strong>负债合计</strong></td>
-                <td>{{ liabilityTotal.toFixed(2) }}</td>
+                <td class="numeric">{{ liabilityTotal.toFixed(2) }}</td>
               </tr>
               <tr>
                 <td colspan="4"><strong>权益合计</strong></td>
-                <td>{{ equityTotal.toFixed(2) }}</td>
+                <td class="numeric">{{ equityTotal.toFixed(2) }}</td>
               </tr>
               <tr>
                 <td colspan="4">
                   <strong>差额（资产 − 负债 − 权益）</strong>
                 </td>
-                <td :style="{ color: balanceDiff === 0 ? '#1e8e3e' : '#d93025', fontWeight: 600 }">
+                <td :class="[balanceDiff === 0 ? 'text-success' : 'text-danger', 'numeric']" style="font-weight: 600;">
                   {{ balanceDiff.toFixed(2) }}
                 </td>
               </tr>
               <tr>
                 <td colspan="5" style="text-align: right; padding-top: 8px;">
-                  <button class="btn btn--ghost btn--small" @click="addRow">＋ 添加科目行</button>
+                  <button class="btn btn--ghost btn--small btn--pill" @click="addRow">＋ 添加科目行</button>
                 </td>
               </tr>
             </tfoot>

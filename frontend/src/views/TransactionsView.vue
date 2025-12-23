@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card card--panel fade-in hover-lift">
       <div class="form-row">
         <div class="form-col">
           <label class="form-label">日期</label>
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <table>
+      <table class="sheet-table table-compact">
         <thead>
           <tr>
             <th>账户</th>
@@ -47,10 +47,10 @@
                 </option>
               </select>
             </td>
-            <td><input type="number" v-model.number="line.debit" step="0.01" /></td>
-            <td><input type="number" v-model.number="line.credit" step="0.01" /></td>
+            <td><input type="number" v-model.number="line.debit" step="0.01" class="numeric table-input" /></td>
+            <td><input type="number" v-model.number="line.credit" step="0.01" class="numeric table-input" /></td>
             <td>
-              <button class="btn btn--ghost" @click="removeLine(idx)">删除</button>
+              <button class="btn btn--ghost btn--small" @click="removeLine(idx)">删除</button>
             </td>
           </tr>
         </tbody>
@@ -71,28 +71,38 @@
     </div>
 
     <!-- 记账历史 -->
-    <div class="card" style="margin-top: 24px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h3 style="margin: 0; font-size: 16px; font-weight: 500;">记账历史</h3>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span v-if="transactionHistory.length > 0" style="font-size: 12px; color: var(--text-muted);">
+    <div class="card card--panel fade-in hover-lift" style="margin-top: 24px;">
+      <div class="card__section-head">
+        <div>
+          <div class="card-title" style="margin-bottom: 2px;">记账历史</div>
+          <div class="card-subtitle" v-if="transactionHistory.length > 0">
             共 {{ transactionHistory.length }} 条记录
-          </span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
           <button class="btn btn--ghost" @click="loadHistory" :disabled="historyLoading">
             {{ historyLoading ? '加载中...' : '刷新' }}
           </button>
         </div>
       </div>
       
-      <div v-if="historyLoading" class="loading-state">
+      <div v-if="historyLoading" class="loading-state subtle-ghost">
         加载中...
       </div>
       
-      <div v-else-if="transactionHistory.length === 0" class="empty-state">
-        暂无记账记录
+      <div
+        v-else-if="transactionHistory.length === 0"
+        class="empty-hero"
+        style="margin: 16px auto 8px;"
+      >
+        <div class="empty-hero__icon">🧾</div>
+        <div class="empty-hero__title">暂无记账记录</div>
+        <div class="empty-hero__subtitle">
+          点击上方「保存/过账」完成第一笔记账后，这里会展示最近的历史凭证。
+        </div>
       </div>
       
-      <div v-else>
+      <div v-else class="history-scroller">
         <div v-for="tx in transactionHistory" :key="tx.id" class="history-item">
           <div class="history-header">
             <div class="history-info">
@@ -104,7 +114,7 @@
             </div>
             <span class="history-id">#{{ tx.id }}</span>
           </div>
-          <table class="history-table">
+          <table class="history-table sheet-table table-quiet table-compact">
             <thead>
               <tr>
                 <th>账户</th>

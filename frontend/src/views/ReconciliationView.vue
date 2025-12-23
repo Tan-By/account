@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card card--panel fade-in hover-lift">
       <div class="form-row">
         <div class="form-col">
           <label class="form-label">银行账户</label>
@@ -31,7 +31,7 @@
                 {{ acc.name }}（{{ acc.currencyCode }}）
               </option>
             </select>
-            <button class="btn btn--ghost" @click="openAddBankAccountModal" style="white-space: nowrap;">
+            <button class="btn btn--ghost btn--pill btn--small" @click="openAddBankAccountModal" style="white-space: nowrap;">
               + 新增账户
             </button>
           </div>
@@ -53,9 +53,24 @@
       </span>
     </div>
 
-    <div v-if="result" class="card" style="margin-top: 10px;">
+    <div
+      v-if="!result"
+      class="empty-hero"
+      style="margin-top: 16px;"
+    >
+      <div class="empty-hero__icon">🏦</div>
+      <div class="empty-hero__title">还未开始对账</div>
+      <div class="empty-hero__subtitle">
+        选择银行账户与对账期间后，点击「开始对账」生成自动匹配结果。
+      </div>
+      <button class="btn btn--primary btn--pill empty-hero__action" @click="doReconcile">
+        开始对账
+      </button>
+    </div>
+
+    <div v-else class="card card--panel fade-in hover-lift" style="margin-top: 10px;">
       <div class="card-title">对账结果摘要（任务ID：{{ result.taskId }}）</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <tbody>
           <tr>
             <td>已匹配记录数</td>
@@ -90,9 +105,9 @@
     </div>
 
     <!-- 银行流水明细 -->
-    <div v-if="result?.bankRecords?.length" class="card" style="margin-top: 10px;">
+    <div v-if="result?.bankRecords?.length" class="card card--panel fade-in" style="margin-top: 10px;">
       <div class="card-title">银行流水明细</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th style="width: 110px;">日期</th>
@@ -121,9 +136,9 @@
     </div>
 
     <!-- 账面分录明细 -->
-    <div v-if="result?.bookEntries?.length" class="card" style="margin-top: 10px;">
+    <div v-if="result?.bookEntries?.length" class="card card--panel fade-in" style="margin-top: 10px;">
       <div class="card-title">账面分录明细</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th style="width: 110px;">日期</th>
@@ -153,7 +168,7 @@
 
     <!-- 新增银行账户模态框 -->
     <div v-if="showAddBankAccountModal" class="modal-overlay" @click.self="closeAddBankAccountModal">
-      <div class="modal-content">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <h3 class="modal-title">新增银行账户</h3>
           <button class="modal-close" @click="closeAddBankAccountModal">×</button>
@@ -330,159 +345,6 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.currency-select {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
-  margin-right: 8px;
-}
-
-.currency-select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
-}
-
-/* 模态框样式 */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.modal-content {
-  background: var(--bg-surface);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.modal-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-main);
-  margin: 0;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: var(--text-muted);
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background 0.15s ease-out, color 0.15s ease-out;
-  padding: 0;
-  line-height: 1;
-}
-
-.modal-close:hover {
-  background: rgba(60, 64, 67, 0.1);
-  color: var(--text-main);
-}
-
-.modal-body {
-  padding: 24px;
-  overflow-y: auto;
-  flex: 1;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group:last-child {
-  margin-bottom: 0;
-}
-
-.form-label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-main);
-  margin-bottom: 8px;
-}
-
-.required {
-  color: #ea4335;
-}
-
-.form-input {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #dadce0;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
-  box-sizing: border-box;
-}
-
-.form-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
-}
-
-.modal-footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 16px 24px;
-  border-top: 1px solid var(--border-subtle);
-  background: #f8f9fa;
-}
 </style>
 
 

@@ -13,13 +13,22 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card card--panel fade-in hover-lift">
       <div class="card-subtitle" style="margin-bottom: 8px; font-size: 12px; color: var(--text-muted);">
         说明：本页进行<b>业务审核</b>、发货与收款；<b>会计审核与过账</b>请在「凭证过账」功能中完成。
       </div>
       <div v-if="loading" class="loading-state">加载中...</div>
-      <div v-else-if="orders.length === 0" class="empty-state">暂无销售单数据</div>
-      <table v-else>
+      <div v-else-if="orders.length === 0" class="empty-hero">
+        <div class="empty-hero__icon">🧾</div>
+        <div class="empty-hero__title">暂无销售单数据</div>
+        <div class="empty-hero__subtitle">
+          点击右上角「新建销售单」，创建首张销售订单并开始跟踪发货和收款。
+        </div>
+        <button class="btn btn--primary btn--pill empty-hero__action" @click="openCreate">
+          新建销售单
+        </button>
+      </div>
+      <table v-else class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th>销售单号</th>
@@ -38,8 +47,8 @@
             <td>{{ order.customerName }}</td>
             <td>{{ formatDate(order.orderDate) }}</td>
             <td>{{ formatDate(order.deliveryDate) }}</td>
-            <td class="text-right">{{ formatAmount(order.receivableAmount) }}</td>
-            <td class="text-right">{{ formatAmount(order.receivedAmount) }}</td>
+            <td class="text-right numeric">{{ formatAmount(order.receivableAmount) }}</td>
+            <td class="text-right numeric">{{ formatAmount(order.receivedAmount) }}</td>
             <td>
               <span class="badge" :class="getStatusBadgeClass(order.status)">
                 {{ getStatusText(order.status) }}
@@ -47,38 +56,38 @@
             </td>
             <td>
               <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-                <button class="btn btn--ghost" @click="view(order)">查看</button>
+                <button class="btn btn--ghost btn--pill btn--small" @click="view(order)">查看</button>
                 <button
                   v-if="order.status === 'DRAFT'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="edit(order)"
                 >
                   编辑
                 </button>
                 <button
                   v-if="order.status === 'DRAFT'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="submit(order)"
                 >
                   提交审核
                 </button>
                 <button
                   v-if="order.status === 'PENDING_AUDIT'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="openAudit(order)"
                 >
                   审核
                 </button>
                 <button
                   v-if="order.status === 'AUDITED' || order.status === 'PARTIAL_SHIPMENT'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="openShipment(order)"
                 >
                   发货
                 </button>
                 <button
                   v-if="order.status === 'SHIPPED' || order.status === 'PARTIAL_PAYMENT' || order.status === 'AUDITED'"
-                  class="btn btn--ghost"
+                  class="btn btn--ghost btn--pill btn--small"
                   @click="openPayment(order)"
                 >
                   收款
@@ -91,13 +100,13 @@
     </div>
 
     <!-- 错误提示 -->
-    <div v-if="errorMessage" class="card" style="margin-top: 10px; background: #fce8e6; border-color: #d93025;">
-      <div style="color: #d93025; font-size: 13px;">{{ errorMessage }}</div>
+    <div v-if="errorMessage" class="card card--panel fade-in" style="margin-top: 10px; background: #fff5f4; border-color: var(--negative); color: var(--negative);">
+      <div style="font-size: 13px;">{{ errorMessage }}</div>
     </div>
 
     <!-- 创建/编辑销售单：子窗口 -->
     <div v-if="editing" class="modal-overlay" @click.self="editing = null">
-      <div class="modal-content modal-content--xl">
+      <div class="modal-content modal-content--xl pop-in">
         <div class="modal-header">
           <div>
             <h3 class="modal-title">{{ editing.id ? '编辑销售单' : '新建销售单' }}</h3>
@@ -148,10 +157,10 @@
                 <div class="modal-section__title">订单明细</div>
                 <div class="modal-section__desc">填写商品、数量、单价与折扣</div>
               </div>
-              <button class="btn btn--ghost" @click="addItem">添加商品</button>
+              <button class="btn btn--ghost btn--pill btn--small" @click="addItem">添加商品</button>
             </div>
             <div class="table-scroll">
-              <table>
+              <table class="sheet-table table-compact table-quiet">
                 <thead>
                   <tr>
                     <th>商品名称</th>
@@ -217,7 +226,7 @@
                         {{ item.discountRate ? `折扣: ${(item.discountRate * 100).toFixed(1)}%` : '' }}
                       </div>
                     </td>
-                    <td class="text-right">{{ formatAmount(calculateItemAmount(idx)) }}</td>
+                    <td class="text-right numeric">{{ formatAmount(calculateItemAmount(idx)) }}</td>
                     <td>
                       <button class="btn btn--ghost" @click="removeItem(idx)">删除</button>
                     </td>
@@ -226,7 +235,7 @@
                 <tfoot>
                   <tr>
                     <td colspan="5"><strong>订单总金额</strong></td>
-                    <td class="text-right"><strong>{{ formatAmount(calculateTotal()) }}</strong></td>
+                    <td class="text-right numeric"><strong>{{ formatAmount(calculateTotal()) }}</strong></td>
                     <td></td>
                   </tr>
                   <tr>
@@ -254,7 +263,7 @@
     </div>
 
     <!-- 审核对话框 -->
-    <div v-if="auditingOrder" class="card" style="margin-top: 10px;">
+    <div v-if="auditingOrder" class="card card--panel fade-in" style="margin-top: 10px;">
       <div class="card-title">审核销售单：{{ auditingOrder.orderNumber }}</div>
       <div class="form-row">
         <div class="form-col">
@@ -270,9 +279,9 @@
     </div>
 
     <!-- 发货对话框 -->
-    <div v-if="shippingOrder" class="card" style="margin-top: 10px;">
+    <div v-if="shippingOrder" class="card card--panel fade-in" style="margin-top: 10px;">
       <div class="card-title">发货操作：{{ shippingOrder.orderNumber }}</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th>商品</th>
@@ -285,9 +294,9 @@
         <tbody>
           <tr v-for="(item, idx) in shippingOrder.items" :key="idx">
             <td>{{ item.productName }}</td>
-            <td class="text-right">{{ item.quantity }}</td>
-            <td class="text-right">{{ item.shippedQuantity }}</td>
-            <td class="text-right">{{ item.unshippedQuantity }}</td>
+            <td class="text-right numeric">{{ item.quantity }}</td>
+            <td class="text-right numeric">{{ item.shippedQuantity }}</td>
+            <td class="text-right numeric">{{ item.unshippedQuantity }}</td>
             <td>
               <input
                 type="number"
@@ -306,24 +315,24 @@
     </div>
 
     <!-- 收款对话框 -->
-    <div v-if="payingOrder" class="card" style="margin-top: 10px;">
+    <div v-if="payingOrder" class="card card--panel fade-in" style="margin-top: 10px;">
       <div class="card-title">收款操作：{{ payingOrder.orderNumber }}</div>
       <div class="form-row">
         <div class="form-col">
           <label class="form-label">应收总额</label>
-          <div>{{ formatAmount(payingOrder.receivableAmount) }}</div>
+          <div class="numeric">{{ formatAmount(payingOrder.receivableAmount) }}</div>
         </div>
         <div class="form-col">
           <label class="form-label">已收金额</label>
-          <div>{{ formatAmount(payingOrder.receivedAmount) }}</div>
+          <div class="numeric">{{ formatAmount(payingOrder.receivedAmount) }}</div>
         </div>
         <div class="form-col">
           <label class="form-label">未收金额</label>
-          <div>{{ formatAmount(payingOrder.unreceivedAmount) }}</div>
+          <div class="numeric">{{ formatAmount(payingOrder.unreceivedAmount) }}</div>
         </div>
         <div class="form-col">
           <label class="form-label">本次收款金额 *</label>
-          <input type="number" v-model.number="paymentAmount" step="0.01" />
+          <input type="number" v-model.number="paymentAmount" step="0.01" class="table-input" />
         </div>
       </div>
       <div style="margin-top: 8px; display: flex; gap: 8px;">
@@ -333,7 +342,7 @@
     </div>
 
     <!-- 查看详情对话框 -->
-    <div v-if="viewingOrder" class="card" style="margin-top: 10px;">
+    <div v-if="viewingOrder" class="card card--panel fade-in" style="margin-top: 10px;">
       <div class="card-title">销售单详情：{{ viewingOrder.orderNumber }}</div>
       <div class="form-row">
         <div class="form-col">
@@ -357,7 +366,7 @@
           </div>
         </div>
       </div>
-      <table style="margin-top: 16px;">
+      <table style="margin-top: 16px;" class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th>商品编码</th>

@@ -11,8 +11,8 @@
       </div>
     </div>
 
-    <div class="card">
-      <table>
+    <div class="card card--panel fade-in">
+      <table class="sheet-table table-compact table-quiet">
         <thead>
           <tr>
             <th>姓名</th>
@@ -35,8 +35,8 @@
               </span>
             </td>
             <td>
-              <button class="btn btn--ghost" @click="edit(u)">编辑</button>
-              <button class="btn btn--ghost" @click="disable(u)" v-if="u.status === '启用'">
+              <button class="btn btn--ghost btn--pill btn--small" @click="edit(u)">编辑</button>
+              <button class="btn btn--ghost btn--pill btn--small" @click="disable(u)" v-if="u.status === '启用'">
                 禁用
               </button>
             </td>
@@ -47,7 +47,7 @@
 
     <!-- 新增/编辑用户：子窗口 -->
     <div v-if="editing" class="modal-overlay" @click.self="editing = null">
-      <div class="modal-content modal-content--md">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <div>
             <h3 class="modal-title">{{ editing.id ? '编辑用户' : '新增用户' }}</h3>
@@ -96,26 +96,31 @@
     </div>
 
     <!-- 员工信息列表 -->
-    <div class="card" style="margin-top: 24px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h3 style="margin: 0; font-size: 16px; font-weight: 500;">员工信息</h3>
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span v-if="users.length > 0" style="font-size: 12px; color: var(--text-muted);">
-            共 {{ users.length }} 名员工
-          </span>
-          <button class="btn btn--ghost" @click="showUserList = !showUserList">
-            {{ showUserList ? '收起' : '展开' }}
-          </button>
+    <div class="card card--panel fade-in" style="margin-top: 24px;">
+      <div class="card__section-head">
+        <div>
+          <div class="card-title" style="margin-bottom: 2px;">员工信息</div>
+          <div class="card-subtitle" v-if="users.length > 0">共 {{ users.length }} 名员工</div>
         </div>
+        <button class="btn btn--ghost btn--pill btn--small" @click="showUserList = !showUserList">
+          {{ showUserList ? '收起' : '展开' }}
+        </button>
       </div>
       
       <div v-if="showUserList">
-        <div v-if="users.length === 0" class="empty-state">
-          暂无员工信息
+        <div v-if="users.length === 0" class="empty-hero">
+          <div class="empty-hero__icon">👥</div>
+          <div class="empty-hero__title">暂无员工信息</div>
+          <div class="empty-hero__subtitle">
+            点击右上角「新增用户」，为系统添加第一个内部用户。
+          </div>
+          <button class="btn btn--primary btn--pill empty-hero__action" @click="openCreate">
+            新增用户
+          </button>
         </div>
-        
+
         <div v-else>
-          <div v-for="u in users" :key="u.id" class="user-item">
+          <div v-for="u in users" :key="u.id" class="user-item card card--ghost fade-in" style="margin-bottom: 10px; box-shadow: none;">
             <div class="user-header">
               <div class="user-info">
                 <span class="user-name">{{ u.name }}</span>
@@ -214,20 +219,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.empty-state {
-  text-align: center;
-  padding: 40px;
-  color: var(--text-muted);
-}
-
-.user-item {
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  padding: 12px;
-  margin-bottom: 12px;
-  background: var(--bg-secondary);
-}
-
 .user-header {
   display: flex;
   justify-content: space-between;
@@ -243,7 +234,7 @@ onMounted(() => {
 }
 
 .user-name {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 14px;
 }
 
@@ -256,8 +247,8 @@ onMounted(() => {
   font-size: 12px;
   color: var(--text-muted);
   padding: 2px 8px;
-  background: var(--bg-tertiary);
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
 }
 
 .user-meta {
@@ -269,7 +260,7 @@ onMounted(() => {
 .user-details {
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .user-detail-row {
@@ -284,7 +275,7 @@ onMounted(() => {
 }
 
 .detail-value {
-  color: var(--text-primary);
+  color: var(--text-main);
 }
 </style>
 

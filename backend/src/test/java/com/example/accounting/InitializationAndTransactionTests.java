@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,7 +26,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
+@Import(TestSecurityConfig.class)
 public class InitializationAndTransactionTests {
 
     @Autowired
@@ -59,7 +61,7 @@ public class InitializationAndTransactionTests {
 
         String initJson = objectMapper.writeValueAsString(initReq);
 
-        String initResp = mockMvc.perform(post("/api/init")
+        String initResp = mockMvc.perform(post("/init")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(initJson))
                 .andExpect(status().isOk())
@@ -70,8 +72,8 @@ public class InitializationAndTransactionTests {
         Company company = objectMapper.readValue(initResp, Company.class);
         assertThat(company.isInitialized()).isTrue();
 
-        // 获取账户ID（简单起见，直接查询 /api/accounts）
-        mockMvc.perform(post("/api/currencies/quick-init"))
+        // 获取账户ID（简单起见，直接查询 /accounts）
+        mockMvc.perform(post("/currencies/quick-init"))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -96,7 +98,7 @@ public class InitializationAndTransactionTests {
 
         String txJson = objectMapper.writeValueAsString(txReq);
 
-        mockMvc.perform(post("/api/transactions")
+        mockMvc.perform(post("/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(txJson))
                 .andExpect(status().isOk());

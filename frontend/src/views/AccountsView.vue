@@ -25,13 +25,13 @@
     </div>
 
     <!-- 按类型分组的科目列表 -->
-    <div v-for="group in groupedAccounts" :key="group.typeKey" class="account-group">
+    <div v-for="group in groupedAccounts" :key="group.typeKey" class="account-group fade-in">
       <div class="account-group__header">
         <span class="account-group__title">{{ getTypeLabel(group.typeKey) }}</span>
         <span class="account-group__count">({{ countAccounts(group.rows) }})</span>
       </div>
-      <div class="card">
-        <table class="account-table">
+      <div class="card card--panel">
+        <table class="account-table sheet-table table-compact">
           <thead>
             <tr>
               <th style="width: 100px;">编码</th>
@@ -85,22 +85,22 @@
                 <div class="action-buttons" style="flex-wrap: wrap; gap: 6px;">
                   <div style="display: flex; gap: 4px;">
                   <button
-                    class="btn btn--ghost btn--small"
+                    class="btn btn--ghost btn--small btn--pill"
                       @click="openEditModal(acc)"
                   >
                     编辑
                   </button>
                     <button
                       v-if="acc.id"
-                      class="btn btn--ghost btn--small"
+                      class="btn btn--ghost btn--small btn--pill"
                       @click="openAddSubAccount(acc)"
-                      style="color: #1a73e8;"
+                      style="color: var(--accent);"
                     >
                       添加子科目
                     </button>
                   <button
                     v-if="acc.id"
-                    class="btn btn--ghost btn--small btn--danger"
+                    class="btn btn--danger btn--small btn--pill"
                     @click="remove(acc)"
                   >
                     删除
@@ -115,9 +115,9 @@
     </div>
 
     <!-- 兜底：如果分组渲染为空但确实有数据，则用简易表格直接展示，避免空白 -->
-    <div v-if="groupedAccounts.length === 0 && accounts.length > 0" class="card">
+    <div v-if="groupedAccounts.length === 0 && accounts.length > 0" class="card card--panel fade-in">
       <div class="card-title">科目列表（未分组兜底展示）</div>
-      <table class="account-table">
+      <table class="account-table sheet-table table-compact">
         <thead>
           <tr>
             <th style="width: 100px;">编码</th>
@@ -138,13 +138,24 @@
     </div>
 
     <!-- 空状态 -->
-    <div v-if="filteredAccounts.length === 0" class="empty-state">
-      暂无科目数据
+    <div
+      v-if="filteredAccounts.length === 0"
+      class="empty-hero"
+      style="margin-top: 16px;"
+    >
+      <div class="empty-hero__icon">📚</div>
+      <div class="empty-hero__title">暂无科目数据</div>
+      <div class="empty-hero__subtitle">
+        点击右上角「新增账户」，为账套创建第一批资产、负债和权益科目。
+      </div>
+      <button class="btn btn--primary btn--pill empty-hero__action" @click="openAddModal">
+        新增账户
+      </button>
     </div>
 
     <!-- 新增账户模态框 -->
     <div v-if="showAddModal" class="modal-overlay" @click.self="closeAddModal">
-      <div class="modal-content">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <h3 class="modal-title">新增账户</h3>
           <button class="modal-close" @click="closeAddModal">×</button>
@@ -203,7 +214,7 @@
 
     <!-- 编辑账户模态框 -->
     <div v-if="showEditModal && editAccount" class="modal-overlay" @click.self="closeEditModal">
-      <div class="modal-content">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <h3 class="modal-title">编辑账户</h3>
           <button class="modal-close" @click="closeEditModal">×</button>

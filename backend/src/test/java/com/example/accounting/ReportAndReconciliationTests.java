@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,7 +26,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
+@Import(TestSecurityConfig.class)
 public class ReportAndReconciliationTests {
 
     @Autowired
@@ -86,7 +88,7 @@ public class ReportAndReconciliationTests {
 
         String profitJson = objectMapper.writeValueAsString(profitReq);
 
-        mockMvc.perform(post("/api/reports/profit")
+        mockMvc.perform(post("/reports/profit")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(profitJson))
                 .andExpect(status().isOk());
@@ -99,7 +101,7 @@ public class ReportAndReconciliationTests {
 
         String bsJson = objectMapper.writeValueAsString(bsReq);
 
-        mockMvc.perform(post("/api/reports/balance-sheet")
+        mockMvc.perform(post("/reports/balance-sheet")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bsJson))
                 .andExpect(status().isOk());
@@ -112,7 +114,7 @@ public class ReportAndReconciliationTests {
 
         String recJson = objectMapper.writeValueAsString(recReq);
 
-        mockMvc.perform(post("/api/reconciliations")
+        mockMvc.perform(post("/reconciliations")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(recJson))
                 .andExpect(status().isOk());

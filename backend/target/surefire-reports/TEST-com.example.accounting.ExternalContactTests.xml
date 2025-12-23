@@ -1,0 +1,2469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.example.accounting.ExternalContactTests" time="14.243" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="GBK"/>
+    <property name="java.class.path" value="D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\target\test-classes;D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\target\classes;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.3.1\spring-boot-starter-web-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter\3.3.1\spring-boot-starter-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot\3.3.1\spring-boot-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.3.1\spring-boot-autoconfigure-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.3.1\spring-boot-starter-logging-3.3.1.jar;C:\Users\Tan_By\.m2\repository\ch\qos\logback\logback-classic\1.5.6\logback-classic-1.5.6.jar;C:\Users\Tan_By\.m2\repository\ch\qos\logback\logback-core\1.5.6\logback-core-1.5.6.jar;C:\Users\Tan_By\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.23.1\log4j-to-slf4j-2.23.1.jar;C:\Users\Tan_By\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;C:\Users\Tan_By\.m2\repository\org\slf4j\jul-to-slf4j\2.0.13\jul-to-slf4j-2.0.13.jar;C:\Users\Tan_By\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\Tan_By\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.3.1\spring-boot-starter-json-3.3.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.17.1\jackson-datatype-jdk8-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.17.1\jackson-module-parameter-names-2.17.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.3.1\spring-boot-starter-tomcat-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.25\tomcat-embed-core-10.1.25.jar;C:\Users\Tan_By\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.25\tomcat-embed-websocket-10.1.25.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-web\6.1.10\spring-web-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-beans\6.1.10\spring-beans-6.1.10.jar;C:\Users\Tan_By\.m2\repository\io\micrometer\micrometer-observation\1.13.1\micrometer-observation-1.13.1.jar;C:\Users\Tan_By\.m2\repository\io\micrometer\micrometer-commons\1.13.1\micrometer-commons-1.13.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-webmvc\6.1.10\spring-webmvc-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-context\6.1.10\spring-context-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-expression\6.1.10\spring-expression-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.3.1\spring-boot-starter-data-jpa-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.3.1\spring-boot-starter-aop-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\aspectj\aspectjweaver\1.9.22\aspectjweaver-1.9.22.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.3.1\spring-boot-starter-jdbc-3.3.1.jar;C:\Users\Tan_By\.m2\repository\com\zaxxer\HikariCP\5.1.0\HikariCP-5.1.0.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-jdbc\6.1.10\spring-jdbc-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\hibernate\orm\hibernate-core\6.5.2.Final\hibernate-core-6.5.2.Final.jar;C:\Users\Tan_By\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\Tan_By\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\Tan_By\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\Tan_By\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\Tan_By\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\classmate\1.7.0\classmate-1.7.0.jar;C:\Users\Tan_By\.m2\repository\net\bytebuddy\byte-buddy\1.14.17\byte-buddy-1.14.17.jar;C:\Users\Tan_By\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.5\jaxb-runtime-4.0.5.jar;C:\Users\Tan_By\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.5\jaxb-core-4.0.5.jar;C:\Users\Tan_By\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\Tan_By\.m2\repository\org\glassfish\jaxb\txw2\4.0.5\txw2-4.0.5.jar;C:\Users\Tan_By\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\Tan_By\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\Tan_By\.m2\repository\org\antlr\antlr4-runtime\4.13.0\antlr4-runtime-4.13.0.jar;C:\Users\Tan_By\.m2\repository\org\springframework\data\spring-data-jpa\3.3.1\spring-data-jpa-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\data\spring-data-commons\3.3.1\spring-data-commons-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-orm\6.1.10\spring-orm-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-tx\6.1.10\spring-tx-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-aspects\6.1.10\spring-aspects-6.1.10.jar;C:\Users\Tan_By\.m2\repository\com\h2database\h2\2.2.224\h2-2.2.224.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.3.1\spring-boot-starter-validation-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.25\tomcat-embed-el-10.1.25.jar;C:\Users\Tan_By\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\Tan_By\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.3.1\spring-boot-starter-security-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-aop\6.1.10\spring-aop-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-config\6.3.1\spring-security-config-6.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-core\6.3.1\spring-security-core-6.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-web\6.3.1\spring-security-web-6.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-crypto\6.3.1\spring-security-crypto-6.3.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.1\jackson-datatype-jsr310-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.1\jackson-annotations-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.1\jackson-core-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.1\jackson-databind-2.17.1.jar;C:\Users\Tan_By\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\Tan_By\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-ui\2.5.0\springdoc-openapi-starter-webmvc-ui-2.5.0.jar;C:\Users\Tan_By\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-api\2.5.0\springdoc-openapi-starter-webmvc-api-2.5.0.jar;C:\Users\Tan_By\.m2\repository\org\springdoc\springdoc-openapi-starter-common\2.5.0\springdoc-openapi-starter-common-2.5.0.jar;C:\Users\Tan_By\.m2\repository\io\swagger\core\v3\swagger-core-jakarta\2.2.21\swagger-core-jakarta-2.2.21.jar;C:\Users\Tan_By\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Tan_By\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.21\swagger-annotations-jakarta-2.2.21.jar;C:\Users\Tan_By\.m2\repository\io\swagger\core\v3\swagger-models-jakarta\2.2.21\swagger-models-jakarta-2.2.21.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.17.1\jackson-dataformat-yaml-2.17.1.jar;C:\Users\Tan_By\.m2\repository\org\webjars\swagger-ui\5.13.0\swagger-ui-5.13.0.jar;C:\Users\Tan_By\.m2\repository\io\jsonwebtoken\jjwt-api\0.12.3\jjwt-api-0.12.3.jar;C:\Users\Tan_By\.m2\repository\io\jsonwebtoken\jjwt-impl\0.12.3\jjwt-impl-0.12.3.jar;C:\Users\Tan_By\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.12.3\jjwt-jackson-0.12.3.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.3.1\spring-boot-starter-test-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-test\3.3.1\spring-boot-test-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.3.1\spring-boot-test-autoconfigure-3.3.1.jar;C:\Users\Tan_By\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\Tan_By\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\Tan_By\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\Tan_By\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\Tan_By\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\Tan_By\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\Tan_By\.m2\repository\org\assertj\assertj-core\3.25.3\assertj-core-3.25.3.jar;C:\Users\Tan_By\.m2\repository\org\awaitility\awaitility\4.2.1\awaitility-4.2.1.jar;C:\Users\Tan_By\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tan_By\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Tan_By\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\Tan_By\.m2\repository\org\mockito\mockito-core\5.11.0\mockito-core-5.11.0.jar;C:\Users\Tan_By\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.17\byte-buddy-agent-1.14.17.jar;C:\Users\Tan_By\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Tan_By\.m2\repository\org\mockito\mockito-junit-jupiter\5.11.0\mockito-junit-jupiter-5.11.0.jar;C:\Users\Tan_By\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\Tan_By\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-core\6.1.10\spring-core-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-jcl\6.1.10\spring-jcl-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-test\6.1.10\spring-test-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.boot.library.path" value="D:\Java\jdk-21.0.5\bin"/>
+    <property name="sun.java.command" value="C:\Users\Tan_By\AppData\Local\Temp\surefire16086972743045745129\surefirebooter-20251224023631951_3.jar C:\Users\Tan_By\AppData\Local\Temp\surefire16086972743045745129 2025-12-24T02-36-31_773-jvmRun1 surefire-20251224023631951_1tmp surefire_0-20251224023631951_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\target\test-classes;D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend\target\classes;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.3.1\spring-boot-starter-web-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter\3.3.1\spring-boot-starter-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot\3.3.1\spring-boot-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.3.1\spring-boot-autoconfigure-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.3.1\spring-boot-starter-logging-3.3.1.jar;C:\Users\Tan_By\.m2\repository\ch\qos\logback\logback-classic\1.5.6\logback-classic-1.5.6.jar;C:\Users\Tan_By\.m2\repository\ch\qos\logback\logback-core\1.5.6\logback-core-1.5.6.jar;C:\Users\Tan_By\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.23.1\log4j-to-slf4j-2.23.1.jar;C:\Users\Tan_By\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;C:\Users\Tan_By\.m2\repository\org\slf4j\jul-to-slf4j\2.0.13\jul-to-slf4j-2.0.13.jar;C:\Users\Tan_By\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\Tan_By\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.3.1\spring-boot-starter-json-3.3.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.17.1\jackson-datatype-jdk8-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.17.1\jackson-module-parameter-names-2.17.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.3.1\spring-boot-starter-tomcat-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.25\tomcat-embed-core-10.1.25.jar;C:\Users\Tan_By\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.25\tomcat-embed-websocket-10.1.25.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-web\6.1.10\spring-web-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-beans\6.1.10\spring-beans-6.1.10.jar;C:\Users\Tan_By\.m2\repository\io\micrometer\micrometer-observation\1.13.1\micrometer-observation-1.13.1.jar;C:\Users\Tan_By\.m2\repository\io\micrometer\micrometer-commons\1.13.1\micrometer-commons-1.13.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-webmvc\6.1.10\spring-webmvc-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-context\6.1.10\spring-context-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-expression\6.1.10\spring-expression-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.3.1\spring-boot-starter-data-jpa-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.3.1\spring-boot-starter-aop-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\aspectj\aspectjweaver\1.9.22\aspectjweaver-1.9.22.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.3.1\spring-boot-starter-jdbc-3.3.1.jar;C:\Users\Tan_By\.m2\repository\com\zaxxer\HikariCP\5.1.0\HikariCP-5.1.0.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-jdbc\6.1.10\spring-jdbc-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\hibernate\orm\hibernate-core\6.5.2.Final\hibernate-core-6.5.2.Final.jar;C:\Users\Tan_By\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\Tan_By\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\Tan_By\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\Tan_By\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\Tan_By\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\classmate\1.7.0\classmate-1.7.0.jar;C:\Users\Tan_By\.m2\repository\net\bytebuddy\byte-buddy\1.14.17\byte-buddy-1.14.17.jar;C:\Users\Tan_By\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.5\jaxb-runtime-4.0.5.jar;C:\Users\Tan_By\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.5\jaxb-core-4.0.5.jar;C:\Users\Tan_By\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\Tan_By\.m2\repository\org\glassfish\jaxb\txw2\4.0.5\txw2-4.0.5.jar;C:\Users\Tan_By\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\Tan_By\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\Tan_By\.m2\repository\org\antlr\antlr4-runtime\4.13.0\antlr4-runtime-4.13.0.jar;C:\Users\Tan_By\.m2\repository\org\springframework\data\spring-data-jpa\3.3.1\spring-data-jpa-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\data\spring-data-commons\3.3.1\spring-data-commons-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-orm\6.1.10\spring-orm-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-tx\6.1.10\spring-tx-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-aspects\6.1.10\spring-aspects-6.1.10.jar;C:\Users\Tan_By\.m2\repository\com\h2database\h2\2.2.224\h2-2.2.224.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.3.1\spring-boot-starter-validation-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.25\tomcat-embed-el-10.1.25.jar;C:\Users\Tan_By\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\Tan_By\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.3.1\spring-boot-starter-security-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-aop\6.1.10\spring-aop-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-config\6.3.1\spring-security-config-6.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-core\6.3.1\spring-security-core-6.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-web\6.3.1\spring-security-web-6.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\security\spring-security-crypto\6.3.1\spring-security-crypto-6.3.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.1\jackson-datatype-jsr310-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.1\jackson-annotations-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.1\jackson-core-2.17.1.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.1\jackson-databind-2.17.1.jar;C:\Users\Tan_By\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\Tan_By\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-ui\2.5.0\springdoc-openapi-starter-webmvc-ui-2.5.0.jar;C:\Users\Tan_By\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-api\2.5.0\springdoc-openapi-starter-webmvc-api-2.5.0.jar;C:\Users\Tan_By\.m2\repository\org\springdoc\springdoc-openapi-starter-common\2.5.0\springdoc-openapi-starter-common-2.5.0.jar;C:\Users\Tan_By\.m2\repository\io\swagger\core\v3\swagger-core-jakarta\2.2.21\swagger-core-jakarta-2.2.21.jar;C:\Users\Tan_By\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Tan_By\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.21\swagger-annotations-jakarta-2.2.21.jar;C:\Users\Tan_By\.m2\repository\io\swagger\core\v3\swagger-models-jakarta\2.2.21\swagger-models-jakarta-2.2.21.jar;C:\Users\Tan_By\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.17.1\jackson-dataformat-yaml-2.17.1.jar;C:\Users\Tan_By\.m2\repository\org\webjars\swagger-ui\5.13.0\swagger-ui-5.13.0.jar;C:\Users\Tan_By\.m2\repository\io\jsonwebtoken\jjwt-api\0.12.3\jjwt-api-0.12.3.jar;C:\Users\Tan_By\.m2\repository\io\jsonwebtoken\jjwt-impl\0.12.3\jjwt-impl-0.12.3.jar;C:\Users\Tan_By\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.12.3\jjwt-jackson-0.12.3.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.3.1\spring-boot-starter-test-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-test\3.3.1\spring-boot-test-3.3.1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.3.1\spring-boot-test-autoconfigure-3.3.1.jar;C:\Users\Tan_By\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\Tan_By\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\Tan_By\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\Tan_By\.m2\repository\net\minidev\json-smart\2.5.1\json-smart-2.5.1.jar;C:\Users\Tan_By\.m2\repository\net\minidev\accessors-smart\2.5.1\accessors-smart-2.5.1.jar;C:\Users\Tan_By\.m2\repository\org\ow2\asm\asm\9.6\asm-9.6.jar;C:\Users\Tan_By\.m2\repository\org\assertj\assertj-core\3.25.3\assertj-core-3.25.3.jar;C:\Users\Tan_By\.m2\repository\org\awaitility\awaitility\4.2.1\awaitility-4.2.1.jar;C:\Users\Tan_By\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Tan_By\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Tan_By\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\Tan_By\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\Tan_By\.m2\repository\org\mockito\mockito-core\5.11.0\mockito-core-5.11.0.jar;C:\Users\Tan_By\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.17\byte-buddy-agent-1.14.17.jar;C:\Users\Tan_By\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Tan_By\.m2\repository\org\mockito\mockito-junit-jupiter\5.11.0\mockito-junit-jupiter-5.11.0.jar;C:\Users\Tan_By\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\Tan_By\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-core\6.1.10\spring-core-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-jcl\6.1.10\spring-jcl-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\springframework\spring-test\6.1.10\spring-test-6.1.10.jar;C:\Users\Tan_By\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Tan_By"/>
+    <property name="user.language" value="zh"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-10-15"/>
+    <property name="java.home" value="D:\Java\jdk-21.0.5"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="C:\Users\Tan_By\AppData\Local\Temp\surefire16086972743045745129\surefirebooter-20251224023631951_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.5+11-LTS"/>
+    <property name="user.name" value="Tan_By"/>
+    <property name="stdout.encoding" value="GBK"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Corretto-21.0.5.11.1"/>
+    <property name="localRepository" value="C:\Users\Tan_By\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-21/issues/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Tan_By\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2024.3"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
+    <property name="java.version" value="21.0.5"/>
+    <property name="user.dir" value="D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="39992"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="GBK"/>
+    <property name="java.library.path" value="D:\Java\jdk-21.0.5\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\Program Files (x86)\VMware\VMware Workstation\bin\;D:\Program Files\Python312\Scripts\;D:\Program Files\Python312\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Azure Data Studio\bin;%CATALINA_HOME%\bin;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;D:\maven\apache-maven-3.9.9\bin;C:\Program Files\dotnet\;D:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Program Files (x86)\nvm;D:\nvm4w\nodejs;D:\Program Files\MySQL\MySQL Server 8.0\bin;D:\Program Files\cursor\resources\app\bin;D:\Program Files (x86)\VMware\VMware Workstation\bin\;D:\Program Files\Python312\Scripts\;D:\Program Files\Python312\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Azure Data Studio\bin;%CATALINA_HOME%\bin;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;D:\maven\apache-maven-3.9.9\bin;C:\Program Files\dotnet\;D:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;D:\Program Files (x86)\nvm;D:\nvm4w\nodejs;D:\Program Files\MySQL\MySQL Server 8.0\bin;D:\Program Files\cursor\resources\app\bin;D:\Program Files (x86)\Microsoft VS Code\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="GBK"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="21.0.5+11-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="createAndDeactivateContact" classname="com.example.accounting.ExternalContactTests" time="0.314">
+    <system-out><![CDATA[02:36:33.262 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.accounting.ExternalContactTests]: ExternalContactTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+02:36:33.426 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.accounting.AccountingApplication for test class com.example.accounting.ExternalContactTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.1)
+
+2025-12-24T02:36:34.033+08:00  INFO 39992 --- [           main] c.e.accounting.ExternalContactTests      : Starting ExternalContactTests using Java 21.0.5 with PID 39992 (started by Tan_By in D:\TANBOYU\学习\系统分析与设计\accountting(3)\backend)
+2025-12-24T02:36:34.036+08:00  INFO 39992 --- [           main] c.e.accounting.ExternalContactTests      : No active profile set, falling back to 1 default profile: "default"
+2025-12-24T02:36:35.663+08:00  INFO 39992 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-24T02:36:35.813+08:00  INFO 39992 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 130 ms. Found 16 JPA repository interfaces.
+2025-12-24T02:36:38.895+08:00  INFO 39992 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-24T02:36:39.200+08:00  INFO 39992 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-12-24T02:36:39.283+08:00  INFO 39992 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-12-24T02:36:39.607+08:00  INFO 39992 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-24T02:36:39.729+08:00  INFO 39992 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-12-24T02:36:39.998+08:00  INFO 39992 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:accountingdb user=SA
+2025-12-24T02:36:39.999+08:00  INFO 39992 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-12-24T02:36:41.875+08:00  INFO 39992 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-24T02:36:41.930+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table accounts (
+        id bigint generated by default as identity,
+        balance numeric(19,2) not null,
+        code varchar(32),
+        enabled boolean not null,
+        name varchar(128) not null,
+        type enum ('ASSET','EQUITY','EXPENSE','INCOME','LIABILITY') not null,
+        currency_id bigint not null,
+        parent_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    create table accounts (
+        id bigint generated by default as identity,
+        balance numeric(19,2) not null,
+        code varchar(32),
+        enabled boolean not null,
+        name varchar(128) not null,
+        type enum ('ASSET','EQUITY','EXPENSE','INCOME','LIABILITY') not null,
+        currency_id bigint not null,
+        parent_id bigint,
+        primary key (id)
+    )
+2025-12-24T02:36:41.941+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table bank_statement_records (
+        id bigint generated by default as identity,
+        balance numeric(19,2),
+        credit_amount numeric(19,2),
+        date date not null,
+        debit_amount numeric(19,2),
+        description varchar(256),
+        match_status varchar(32),
+        reference varchar(64),
+        account_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table bank_statement_records (
+        id bigint generated by default as identity,
+        balance numeric(19,2),
+        credit_amount numeric(19,2),
+        date date not null,
+        debit_amount numeric(19,2),
+        description varchar(256),
+        match_status varchar(32),
+        reference varchar(64),
+        account_id bigint not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.942+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table companies (
+        id bigint generated by default as identity,
+        accounting_standard varchar(64),
+        initialized boolean not null,
+        name varchar(128) not null,
+        start_date date not null,
+        tax_id varchar(64),
+        default_currency_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    create table companies (
+        id bigint generated by default as identity,
+        accounting_standard varchar(64),
+        initialized boolean not null,
+        name varchar(128) not null,
+        start_date date not null,
+        tax_id varchar(64),
+        default_currency_id bigint,
+        primary key (id)
+    )
+2025-12-24T02:36:41.944+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table currencies (
+        id bigint generated by default as identity,
+        code varchar(8) not null,
+        fraction_digits integer not null,
+        name varchar(64) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table currencies (
+        id bigint generated by default as identity,
+        code varchar(8) not null,
+        fraction_digits integer not null,
+        name varchar(64) not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.946+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table exchange_rates (
+        id bigint generated by default as identity,
+        rate numeric(19,8) not null,
+        rate_date date not null,
+        from_currency_id bigint not null,
+        to_currency_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table exchange_rates (
+        id bigint generated by default as identity,
+        rate numeric(19,8) not null,
+        rate_date date not null,
+        from_currency_id bigint not null,
+        to_currency_id bigint not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.947+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table external_contacts (
+        id bigint generated by default as identity,
+        address varchar(256),
+        bank_account varchar(64),
+        bank_name varchar(64),
+        email varchar(64),
+        main_contact varchar(64),
+        name varchar(128) not null,
+        phone varchar(32),
+        status varchar(16) not null,
+        tax_id varchar(32),
+        type varchar(32) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table external_contacts (
+        id bigint generated by default as identity,
+        address varchar(256),
+        bank_account varchar(64),
+        bank_name varchar(64),
+        email varchar(64),
+        main_contact varchar(64),
+        name varchar(128) not null,
+        phone varchar(32),
+        status varchar(16) not null,
+        tax_id varchar(32),
+        type varchar(32) not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.949+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table products (
+        id bigint generated by default as identity,
+        code varchar(64) not null,
+        enabled boolean not null,
+        last_purchase_price numeric(19,2),
+        name varchar(128) not null,
+        specification varchar(128),
+        unit varchar(16) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table products (
+        id bigint generated by default as identity,
+        code varchar(64) not null,
+        enabled boolean not null,
+        last_purchase_price numeric(19,2),
+        name varchar(128) not null,
+        specification varchar(128),
+        unit varchar(16) not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.950+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table purchase_order_items (
+        id bigint generated by default as identity,
+        amount numeric(19,2) not null,
+        delivered_quantity integer not null,
+        product_name varchar(128) not null,
+        quantity integer not null,
+        undelivered_quantity integer not null,
+        unit varchar(16) not null,
+        unit_price numeric(19,2) not null,
+        product_id bigint,
+        purchase_order_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table purchase_order_items (
+        id bigint generated by default as identity,
+        amount numeric(19,2) not null,
+        delivered_quantity integer not null,
+        product_name varchar(128) not null,
+        quantity integer not null,
+        undelivered_quantity integer not null,
+        unit varchar(16) not null,
+        unit_price numeric(19,2) not null,
+        product_id bigint,
+        purchase_order_id bigint not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.952+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table purchase_orders (
+        id bigint generated by default as identity,
+        approval_comment varchar(512),
+        approval_time date,
+        delivery_date date not null,
+        order_date date not null,
+        order_number varchar(32) not null,
+        status enum ('APPROVED','CANCELLED','COMPLETED','DRAFT','PARTIAL_DELIVERY','PENDING_APPROVAL','REJECTED') not null,
+        submit_time date,
+        total_amount numeric(19,2) not null,
+        approver_id bigint,
+        submitter_id bigint,
+        supplier_id bigint not null,
+        warehouse_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    create table purchase_orders (
+        id bigint generated by default as identity,
+        approval_comment varchar(512),
+        approval_time date,
+        delivery_date date not null,
+        order_date date not null,
+        order_number varchar(32) not null,
+        status enum ('APPROVED','CANCELLED','COMPLETED','DRAFT','PARTIAL_DELIVERY','PENDING_APPROVAL','REJECTED') not null,
+        submit_time date,
+        total_amount numeric(19,2) not null,
+        approver_id bigint,
+        submitter_id bigint,
+        supplier_id bigint not null,
+        warehouse_id bigint,
+        primary key (id)
+    )
+2025-12-24T02:36:41.954+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table reconciliation_tasks (
+        id bigint generated by default as identity,
+        executed_at timestamp(6),
+        executor varchar(64),
+        period_end date not null,
+        period_start date not null,
+        status varchar(32) not null,
+        account_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table reconciliation_tasks (
+        id bigint generated by default as identity,
+        executed_at timestamp(6),
+        executor varchar(64),
+        period_end date not null,
+        period_start date not null,
+        status varchar(32) not null,
+        account_id bigint not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.955+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table role_permissions (
+        role_id bigint not null,
+        permission_code varchar(64)
+    )
+Hibernate: 
+    create table role_permissions (
+        role_id bigint not null,
+        permission_code varchar(64)
+    )
+2025-12-24T02:36:41.956+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table roles (
+        id bigint generated by default as identity,
+        description varchar(256),
+        name varchar(64) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table roles (
+        id bigint generated by default as identity,
+        description varchar(256),
+        name varchar(64) not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.958+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table sales_order_items (
+        id bigint generated by default as identity,
+        amount numeric(19,2) not null,
+        discount_rate numeric(5,4) not null,
+        product_name varchar(128) not null,
+        quantity integer not null,
+        shipped_quantity integer not null,
+        unit varchar(16) not null,
+        unit_price numeric(19,2) not null,
+        unshipped_quantity integer not null,
+        product_id bigint,
+        sales_order_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table sales_order_items (
+        id bigint generated by default as identity,
+        amount numeric(19,2) not null,
+        discount_rate numeric(5,4) not null,
+        product_name varchar(128) not null,
+        quantity integer not null,
+        shipped_quantity integer not null,
+        unit varchar(16) not null,
+        unit_price numeric(19,2) not null,
+        unshipped_quantity integer not null,
+        product_id bigint,
+        sales_order_id bigint not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.962+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table sales_orders (
+        id bigint generated by default as identity,
+        audit_comment varchar(512),
+        audit_time date,
+        delivery_date date not null,
+        discount_amount numeric(19,2) not null,
+        invoice_status varchar(16),
+        order_date date not null,
+        order_number varchar(32) not null,
+        payment_method varchar(32),
+        receivable_amount numeric(19,2) not null,
+        received_amount numeric(19,2) not null,
+        shipping_address varchar(256),
+        status enum ('AUDITED','CANCELLED','COMPLETED','DRAFT','PARTIAL_PAYMENT','PARTIAL_SHIPMENT','PENDING_AUDIT','REJECTED','SHIPPED') not null,
+        submit_time date,
+        total_amount numeric(19,2) not null,
+        unreceived_amount numeric(19,2) not null,
+        auditor_id bigint,
+        customer_id bigint not null,
+        submitter_id bigint,
+        primary key (id)
+    )
+Hibernate: 
+    create table sales_orders (
+        id bigint generated by default as identity,
+        audit_comment varchar(512),
+        audit_time date,
+        delivery_date date not null,
+        discount_amount numeric(19,2) not null,
+        invoice_status varchar(16),
+        order_date date not null,
+        order_number varchar(32) not null,
+        payment_method varchar(32),
+        receivable_amount numeric(19,2) not null,
+        received_amount numeric(19,2) not null,
+        shipping_address varchar(256),
+        status enum ('AUDITED','CANCELLED','COMPLETED','DRAFT','PARTIAL_PAYMENT','PARTIAL_SHIPMENT','PENDING_AUDIT','REJECTED','SHIPPED') not null,
+        submit_time date,
+        total_amount numeric(19,2) not null,
+        unreceived_amount numeric(19,2) not null,
+        auditor_id bigint,
+        customer_id bigint not null,
+        submitter_id bigint,
+        primary key (id)
+    )
+2025-12-24T02:36:41.963+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table tax_declarations (
+        id bigint generated by default as identity,
+        period_end date not null,
+        period_start date not null,
+        remark varchar(256),
+        status varchar(32) not null,
+        submitted_at timestamp(6),
+        tax_due numeric(19,2),
+        tax_paid numeric(19,2),
+        tax_payable numeric(19,2),
+        tax_relief numeric(19,2),
+        tax_type varchar(64) not null,
+        taxable_amount numeric(19,2),
+        primary key (id)
+    )
+Hibernate: 
+    create table tax_declarations (
+        id bigint generated by default as identity,
+        period_end date not null,
+        period_start date not null,
+        remark varchar(256),
+        status varchar(32) not null,
+        submitted_at timestamp(6),
+        tax_due numeric(19,2),
+        tax_paid numeric(19,2),
+        tax_payable numeric(19,2),
+        tax_relief numeric(19,2),
+        tax_type varchar(64) not null,
+        taxable_amount numeric(19,2),
+        primary key (id)
+    )
+2025-12-24T02:36:41.967+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table transaction_entries (
+        id bigint generated by default as identity,
+        amount numeric(19,2) not null,
+        debit_credit enum ('CREDIT','DEBIT') not null,
+        account_id bigint not null,
+        transaction_id bigint not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table transaction_entries (
+        id bigint generated by default as identity,
+        amount numeric(19,2) not null,
+        debit_credit enum ('CREDIT','DEBIT') not null,
+        account_id bigint not null,
+        transaction_id bigint not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.969+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table transactions (
+        id bigint generated by default as identity,
+        date date not null,
+        description varchar(256) not null,
+        status enum ('AUDITED','POSTED','UNAUDITED') not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table transactions (
+        id bigint generated by default as identity,
+        date date not null,
+        description varchar(256) not null,
+        status enum ('AUDITED','POSTED','UNAUDITED') not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.971+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table user_accounts (
+        id bigint generated by default as identity,
+        department varchar(64),
+        employee_no varchar(64),
+        name varchar(64) not null,
+        password varchar(128) not null,
+        position varchar(64),
+        status varchar(16) not null,
+        username varchar(64) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table user_accounts (
+        id bigint generated by default as identity,
+        department varchar(64),
+        employee_no varchar(64),
+        name varchar(64) not null,
+        password varchar(128) not null,
+        position varchar(64),
+        status varchar(16) not null,
+        username varchar(64) not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.971+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table user_roles (
+        user_id bigint not null,
+        role_id bigint not null,
+        primary key (user_id, role_id)
+    )
+Hibernate: 
+    create table user_roles (
+        user_id bigint not null,
+        role_id bigint not null,
+        primary key (user_id, role_id)
+    )
+2025-12-24T02:36:41.974+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    create table warehouses (
+        id bigint generated by default as identity,
+        address varchar(256),
+        code varchar(32) not null,
+        enabled boolean not null,
+        name varchar(128) not null,
+        primary key (id)
+    )
+Hibernate: 
+    create table warehouses (
+        id bigint generated by default as identity,
+        address varchar(256),
+        code varchar(32) not null,
+        enabled boolean not null,
+        name varchar(128) not null,
+        primary key (id)
+    )
+2025-12-24T02:36:41.975+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists currencies 
+       drop constraint if exists UK5r2dfxl1m7vus47ma0y05sflt
+Hibernate: 
+    alter table if exists currencies 
+       drop constraint if exists UK5r2dfxl1m7vus47ma0y05sflt
+2025-12-24T02:36:41.975+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists currencies 
+       add constraint UK5r2dfxl1m7vus47ma0y05sflt unique (code)
+Hibernate: 
+    alter table if exists currencies 
+       add constraint UK5r2dfxl1m7vus47ma0y05sflt unique (code)
+2025-12-24T02:36:41.976+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists products 
+       drop constraint if exists UK57ivhy5aj3qfmdvl6vxdfjs4p
+Hibernate: 
+    alter table if exists products 
+       drop constraint if exists UK57ivhy5aj3qfmdvl6vxdfjs4p
+2025-12-24T02:36:41.976+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists products 
+       add constraint UK57ivhy5aj3qfmdvl6vxdfjs4p unique (code)
+Hibernate: 
+    alter table if exists products 
+       add constraint UK57ivhy5aj3qfmdvl6vxdfjs4p unique (code)
+2025-12-24T02:36:41.976+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_orders 
+       drop constraint if exists UKnqsdqb8p2iobsmeaa2jxxw7k
+Hibernate: 
+    alter table if exists purchase_orders 
+       drop constraint if exists UKnqsdqb8p2iobsmeaa2jxxw7k
+2025-12-24T02:36:41.978+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_orders 
+       add constraint UKnqsdqb8p2iobsmeaa2jxxw7k unique (order_number)
+Hibernate: 
+    alter table if exists purchase_orders 
+       add constraint UKnqsdqb8p2iobsmeaa2jxxw7k unique (order_number)
+2025-12-24T02:36:41.978+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists roles 
+       drop constraint if exists UKofx66keruapi6vyqpv6f2or37
+Hibernate: 
+    alter table if exists roles 
+       drop constraint if exists UKofx66keruapi6vyqpv6f2or37
+2025-12-24T02:36:41.979+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists roles 
+       add constraint UKofx66keruapi6vyqpv6f2or37 unique (name)
+Hibernate: 
+    alter table if exists roles 
+       add constraint UKofx66keruapi6vyqpv6f2or37 unique (name)
+2025-12-24T02:36:41.980+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_orders 
+       drop constraint if exists UK710tqn7k0rkp3ubriqlh0woyp
+Hibernate: 
+    alter table if exists sales_orders 
+       drop constraint if exists UK710tqn7k0rkp3ubriqlh0woyp
+2025-12-24T02:36:41.981+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_orders 
+       add constraint UK710tqn7k0rkp3ubriqlh0woyp unique (order_number)
+Hibernate: 
+    alter table if exists sales_orders 
+       add constraint UK710tqn7k0rkp3ubriqlh0woyp unique (order_number)
+2025-12-24T02:36:41.981+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists user_accounts 
+       drop constraint if exists UKlxwlgwuy2yrbye2vgs9w9x7mr
+Hibernate: 
+    alter table if exists user_accounts 
+       drop constraint if exists UKlxwlgwuy2yrbye2vgs9w9x7mr
+2025-12-24T02:36:41.981+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists user_accounts 
+       add constraint UKlxwlgwuy2yrbye2vgs9w9x7mr unique (username)
+Hibernate: 
+    alter table if exists user_accounts 
+       add constraint UKlxwlgwuy2yrbye2vgs9w9x7mr unique (username)
+2025-12-24T02:36:41.983+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists warehouses 
+       drop constraint if exists UK6herdbg4x5wp6gkor8epv73oc
+Hibernate: 
+    alter table if exists warehouses 
+       drop constraint if exists UK6herdbg4x5wp6gkor8epv73oc
+2025-12-24T02:36:41.984+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists warehouses 
+       add constraint UK6herdbg4x5wp6gkor8epv73oc unique (code)
+Hibernate: 
+    alter table if exists warehouses 
+       add constraint UK6herdbg4x5wp6gkor8epv73oc unique (code)
+2025-12-24T02:36:41.985+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists accounts 
+       add constraint FKs08d0ccyak63pou9tfk093dbk 
+       foreign key (currency_id) 
+       references currencies
+Hibernate: 
+    alter table if exists accounts 
+       add constraint FKs08d0ccyak63pou9tfk093dbk 
+       foreign key (currency_id) 
+       references currencies
+2025-12-24T02:36:41.991+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists accounts 
+       add constraint FK7iek2tl1ntnp3yyks15odo4h2 
+       foreign key (parent_id) 
+       references accounts
+Hibernate: 
+    alter table if exists accounts 
+       add constraint FK7iek2tl1ntnp3yyks15odo4h2 
+       foreign key (parent_id) 
+       references accounts
+2025-12-24T02:36:41.993+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists bank_statement_records 
+       add constraint FK727by7ul9bwxwn6hh371naxb0 
+       foreign key (account_id) 
+       references accounts
+Hibernate: 
+    alter table if exists bank_statement_records 
+       add constraint FK727by7ul9bwxwn6hh371naxb0 
+       foreign key (account_id) 
+       references accounts
+2025-12-24T02:36:41.996+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists companies 
+       add constraint FKnp1gt0xjwoinby56d7mvctr3y 
+       foreign key (default_currency_id) 
+       references currencies
+Hibernate: 
+    alter table if exists companies 
+       add constraint FKnp1gt0xjwoinby56d7mvctr3y 
+       foreign key (default_currency_id) 
+       references currencies
+2025-12-24T02:36:41.999+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists exchange_rates 
+       add constraint FKhkch9xmcqrklukbwkv5q3jf7p 
+       foreign key (from_currency_id) 
+       references currencies
+Hibernate: 
+    alter table if exists exchange_rates 
+       add constraint FKhkch9xmcqrklukbwkv5q3jf7p 
+       foreign key (from_currency_id) 
+       references currencies
+2025-12-24T02:36:42.001+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists exchange_rates 
+       add constraint FK7mxjkyobm460mictds6935plq 
+       foreign key (to_currency_id) 
+       references currencies
+Hibernate: 
+    alter table if exists exchange_rates 
+       add constraint FK7mxjkyobm460mictds6935plq 
+       foreign key (to_currency_id) 
+       references currencies
+2025-12-24T02:36:42.005+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_order_items 
+       add constraint FKs16e5vrvsp8alu0xp8m3a2ol5 
+       foreign key (product_id) 
+       references products
+Hibernate: 
+    alter table if exists purchase_order_items 
+       add constraint FKs16e5vrvsp8alu0xp8m3a2ol5 
+       foreign key (product_id) 
+       references products
+2025-12-24T02:36:42.008+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_order_items 
+       add constraint FKo3yj8ocbw2kav38548t22hgh8 
+       foreign key (purchase_order_id) 
+       references purchase_orders
+Hibernate: 
+    alter table if exists purchase_order_items 
+       add constraint FKo3yj8ocbw2kav38548t22hgh8 
+       foreign key (purchase_order_id) 
+       references purchase_orders
+2025-12-24T02:36:42.010+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_orders 
+       add constraint FKdiv9lsf25xfpduymmb04kfmwo 
+       foreign key (approver_id) 
+       references user_accounts
+Hibernate: 
+    alter table if exists purchase_orders 
+       add constraint FKdiv9lsf25xfpduymmb04kfmwo 
+       foreign key (approver_id) 
+       references user_accounts
+2025-12-24T02:36:42.013+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_orders 
+       add constraint FK782patrbb3t9ytw1efwfx4dit 
+       foreign key (submitter_id) 
+       references user_accounts
+Hibernate: 
+    alter table if exists purchase_orders 
+       add constraint FK782patrbb3t9ytw1efwfx4dit 
+       foreign key (submitter_id) 
+       references user_accounts
+2025-12-24T02:36:42.015+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_orders 
+       add constraint FKg0d8026gt6nlulu4mrwa20n2b 
+       foreign key (supplier_id) 
+       references external_contacts
+Hibernate: 
+    alter table if exists purchase_orders 
+       add constraint FKg0d8026gt6nlulu4mrwa20n2b 
+       foreign key (supplier_id) 
+       references external_contacts
+2025-12-24T02:36:42.016+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists purchase_orders 
+       add constraint FK83rqgbblncfji6cyhcqsyl8hm 
+       foreign key (warehouse_id) 
+       references warehouses
+Hibernate: 
+    alter table if exists purchase_orders 
+       add constraint FK83rqgbblncfji6cyhcqsyl8hm 
+       foreign key (warehouse_id) 
+       references warehouses
+2025-12-24T02:36:42.017+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists reconciliation_tasks 
+       add constraint FK3ppjtugb9l5txie5w4vi44qas 
+       foreign key (account_id) 
+       references accounts
+Hibernate: 
+    alter table if exists reconciliation_tasks 
+       add constraint FK3ppjtugb9l5txie5w4vi44qas 
+       foreign key (account_id) 
+       references accounts
+2025-12-24T02:36:42.018+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists role_permissions 
+       add constraint FKn5fotdgk8d1xvo8nav9uv3muc 
+       foreign key (role_id) 
+       references roles
+Hibernate: 
+    alter table if exists role_permissions 
+       add constraint FKn5fotdgk8d1xvo8nav9uv3muc 
+       foreign key (role_id) 
+       references roles
+2025-12-24T02:36:42.019+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_order_items 
+       add constraint FKkjyfnk6r23ukvjpybjq1q0b92 
+       foreign key (product_id) 
+       references products
+Hibernate: 
+    alter table if exists sales_order_items 
+       add constraint FKkjyfnk6r23ukvjpybjq1q0b92 
+       foreign key (product_id) 
+       references products
+2025-12-24T02:36:42.020+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_order_items 
+       add constraint FKtrge001xfy0fc9961g11411re 
+       foreign key (sales_order_id) 
+       references sales_orders
+Hibernate: 
+    alter table if exists sales_order_items 
+       add constraint FKtrge001xfy0fc9961g11411re 
+       foreign key (sales_order_id) 
+       references sales_orders
+2025-12-24T02:36:42.022+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_orders 
+       add constraint FK1ikpm5lly8cj03mtcgubcgg7d 
+       foreign key (auditor_id) 
+       references user_accounts
+Hibernate: 
+    alter table if exists sales_orders 
+       add constraint FK1ikpm5lly8cj03mtcgubcgg7d 
+       foreign key (auditor_id) 
+       references user_accounts
+2025-12-24T02:36:42.024+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_orders 
+       add constraint FK2qve6nmg5s5xu884xjwmwssba 
+       foreign key (customer_id) 
+       references external_contacts
+Hibernate: 
+    alter table if exists sales_orders 
+       add constraint FK2qve6nmg5s5xu884xjwmwssba 
+       foreign key (customer_id) 
+       references external_contacts
+2025-12-24T02:36:42.033+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists sales_orders 
+       add constraint FK8mdfoigu2jboa1qr4u6j1q368 
+       foreign key (submitter_id) 
+       references user_accounts
+Hibernate: 
+    alter table if exists sales_orders 
+       add constraint FK8mdfoigu2jboa1qr4u6j1q368 
+       foreign key (submitter_id) 
+       references user_accounts
+2025-12-24T02:36:42.037+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists transaction_entries 
+       add constraint FKajc1luuc2gflk6c26y9g27dcj 
+       foreign key (account_id) 
+       references accounts
+Hibernate: 
+    alter table if exists transaction_entries 
+       add constraint FKajc1luuc2gflk6c26y9g27dcj 
+       foreign key (account_id) 
+       references accounts
+2025-12-24T02:36:42.041+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists transaction_entries 
+       add constraint FKjyjlskyi2l33f20jv11rcv214 
+       foreign key (transaction_id) 
+       references transactions
+Hibernate: 
+    alter table if exists transaction_entries 
+       add constraint FKjyjlskyi2l33f20jv11rcv214 
+       foreign key (transaction_id) 
+       references transactions
+2025-12-24T02:36:42.043+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists user_roles 
+       add constraint FKh8ciramu9cc9q3qcqiv4ue8a6 
+       foreign key (role_id) 
+       references roles
+Hibernate: 
+    alter table if exists user_roles 
+       add constraint FKh8ciramu9cc9q3qcqiv4ue8a6 
+       foreign key (role_id) 
+       references roles
+2025-12-24T02:36:42.046+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    alter table if exists user_roles 
+       add constraint FKnb9ceyh529oqh9n3aiw68twme 
+       foreign key (user_id) 
+       references user_accounts
+Hibernate: 
+    alter table if exists user_roles 
+       add constraint FKnb9ceyh529oqh9n3aiw68twme 
+       foreign key (user_id) 
+       references user_accounts
+2025-12-24T02:36:42.052+08:00  INFO 39992 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-24T02:36:43.110+08:00  INFO 39992 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-24T02:36:44.778+08:00  INFO 39992 --- [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-12-24T02:36:44.778+08:00  WARN 39992 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-12-24T02:36:45.128+08:00  WARN 39992 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+🔧 SecurityConfig: 开始配置 SecurityFilterChain
+✅ SecurityConfig: SecurityFilterChain 配置完成
+2025-12-24T02:36:46.316+08:00  INFO 39992 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:accountingdb'
+2025-12-24T02:36:46.369+08:00  INFO 39992 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-12-24T02:36:46.369+08:00  INFO 39992 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-12-24T02:36:46.371+08:00  INFO 39992 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2025-12-24T02:36:46.396+08:00  INFO 39992 --- [           main] c.e.accounting.ExternalContactTests      : Started ExternalContactTests in 12.784 seconds (process running for 14.259)
+2025-12-24T02:36:46.518+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+2025-12-24T02:36:46.555+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+2025-12-24T02:36:46.578+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+2025-12-24T02:36:46.580+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+2025-12-24T02:36:46.581+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+2025-12-24T02:36:46.582+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+2025-12-24T02:36:46.585+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+2025-12-24T02:36:46.585+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        currencies
+        (code, fraction_digits, name, id) 
+    values
+        (?, ?, ?, default)
+2025-12-24T02:36:46.594+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.599+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.602+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.606+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.608+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.610+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.612+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.614+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.615+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.616+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.618+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.619+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.621+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.625+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.629+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.632+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.633+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.635+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.636+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+2025-12-24T02:36:46.639+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+Hibernate: 
+    select
+        count(er1_0.id) 
+    from
+        exchange_rates er1_0 
+    join
+        currencies fc1_0 
+            on fc1_0.id=er1_0.from_currency_id 
+    join
+        currencies tc1_0 
+            on tc1_0.id=er1_0.to_currency_id 
+    where
+        fc1_0.code=? 
+        and tc1_0.code=? 
+        and er1_0.rate_date=?
+2025-12-24T02:36:46.646+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        exchange_rates
+        (from_currency_id, rate, rate_date, to_currency_id, id) 
+    values
+        (?, ?, ?, ?, default)
+货币和汇率已初始化：CNY, USD, EUR, JPY
+2025-12-24T02:36:46.686+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+Hibernate: 
+    select
+        c1_0.id,
+        c1_0.code,
+        c1_0.fraction_digits,
+        c1_0.name 
+    from
+        currencies c1_0 
+    where
+        c1_0.code=?
+2025-12-24T02:36:46.710+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        accounts a1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        accounts a1_0
+2025-12-24T02:36:46.715+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.719+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.723+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.728+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.733+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.737+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.739+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.741+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.743+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.744+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.746+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.747+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.748+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.750+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.751+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.752+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.754+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.754+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.756+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.758+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.759+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.761+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.763+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.765+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.769+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.778+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.780+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.783+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.785+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.786+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.788+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.789+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.790+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.791+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.792+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        accounts
+        (balance, code, currency_id, enabled, name, parent_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+预设科目已初始化，共 35 个科目
+2025-12-24T02:36:46.799+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+2025-12-24T02:36:46.807+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+2025-12-24T02:36:46.818+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+2025-12-24T02:36:46.819+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+2025-12-24T02:36:46.821+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+2025-12-24T02:36:46.822+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+2025-12-24T02:36:46.824+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+2025-12-24T02:36:46.825+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+2025-12-24T02:36:46.829+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+2025-12-24T02:36:46.831+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        roles
+        (description, name, id) 
+    values
+        (?, ?, default)
+预定义角色已初始化
+2025-12-24T02:36:46.835+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        ua1_0.id,
+        ua1_0.department,
+        ua1_0.employee_no,
+        ua1_0.name,
+        ua1_0.password,
+        ua1_0.position,
+        ua1_0.status,
+        ua1_0.username 
+    from
+        user_accounts ua1_0 
+    where
+        ua1_0.username=?
+Hibernate: 
+    select
+        ua1_0.id,
+        ua1_0.department,
+        ua1_0.employee_no,
+        ua1_0.name,
+        ua1_0.password,
+        ua1_0.position,
+        ua1_0.status,
+        ua1_0.username 
+    from
+        user_accounts ua1_0 
+    where
+        ua1_0.username=?
+2025-12-24T02:36:46.837+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.name=?
+2025-12-24T02:36:46.842+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        p1_0.role_id,
+        p1_0.permission_code 
+    from
+        role_permissions p1_0 
+    where
+        p1_0.role_id=?
+Hibernate: 
+    select
+        p1_0.role_id,
+        p1_0.permission_code 
+    from
+        role_permissions p1_0 
+    where
+        p1_0.role_id=?
+2025-12-24T02:36:46.930+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        user_accounts
+        (department, employee_no, name, password, position, status, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        user_accounts
+        (department, employee_no, name, password, position, status, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:46.933+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        user_roles
+        (user_id, role_id) 
+    values
+        (?, ?)
+Hibernate: 
+    insert 
+    into
+        user_roles
+        (user_id, role_id) 
+    values
+        (?, ?)
+Admin用户已创建: admin/admin123
+
+================================================================================
+📋 已注册的 HTTP 端点列表:
+================================================================================
+  UNKNOWN  N/A                                                -> AccountController.create
+  UNKNOWN  N/A                                                -> AccountController.delete
+  UNKNOWN  N/A                                                -> AccountController.list
+  UNKNOWN  N/A                                                -> AccountController.update
+  UNKNOWN  N/A                                                -> AuthController.login
+  UNKNOWN  N/A                                                -> BasicErrorController.error
+  UNKNOWN  N/A                                                -> BasicErrorController.errorHtml
+  UNKNOWN  N/A                                                -> CurrencyController.create
+  UNKNOWN  N/A                                                -> CurrencyController.list
+  UNKNOWN  N/A                                                -> CurrencyController.quickInit
+  UNKNOWN  N/A                                                -> ExternalContactController.create
+  UNKNOWN  N/A                                                -> ExternalContactController.deactivate
+  UNKNOWN  N/A                                                -> ExternalContactController.list
+  UNKNOWN  N/A                                                -> ExternalContactController.update
+  UNKNOWN  N/A                                                -> InitializationController.initialize
+  UNKNOWN  N/A                                                -> OpenApiWebMvcResource.openapiJson
+  UNKNOWN  N/A                                                -> OpenApiWebMvcResource.openapiYaml
+  UNKNOWN  N/A                                                -> PostingController.executePosting
+  UNKNOWN  N/A                                                -> PostingController.getPendingVouchers
+  UNKNOWN  N/A                                                -> ProductController.create
+  UNKNOWN  N/A                                                -> ProductController.get
+  UNKNOWN  N/A                                                -> ProductController.list
+  UNKNOWN  N/A                                                -> ProductController.update
+  UNKNOWN  N/A                                                -> PurchaseOrderController.approve
+  UNKNOWN  N/A                                                -> PurchaseOrderController.create
+  UNKNOWN  N/A                                                -> PurchaseOrderController.deliver
+  UNKNOWN  N/A                                                -> PurchaseOrderController.get
+  UNKNOWN  N/A                                                -> PurchaseOrderController.list
+  UNKNOWN  N/A                                                -> PurchaseOrderController.submit
+  UNKNOWN  N/A                                                -> ReconciliationController.reconcile
+  UNKNOWN  N/A                                                -> ReportController.balanceSheet
+  UNKNOWN  N/A                                                -> ReportController.cashFlow
+  UNKNOWN  N/A                                                -> ReportController.profit
+  UNKNOWN  N/A                                                -> SalesOrderController.audit
+  UNKNOWN  N/A                                                -> SalesOrderController.create
+  UNKNOWN  N/A                                                -> SalesOrderController.get
+  UNKNOWN  N/A                                                -> SalesOrderController.list
+  UNKNOWN  N/A                                                -> SalesOrderController.receivePayment
+  UNKNOWN  N/A                                                -> SalesOrderController.ship
+  UNKNOWN  N/A                                                -> SalesOrderController.submit
+  UNKNOWN  N/A                                                -> SwaggerConfigResource.openapiJson
+  UNKNOWN  N/A                                                -> SwaggerWelcomeWebMvc.redirectToUi
+  UNKNOWN  N/A                                                -> TaxDeclarationController.accept
+  UNKNOWN  N/A                                                -> TaxDeclarationController.createDraft
+  UNKNOWN  N/A                                                -> TaxDeclarationController.list
+  UNKNOWN  N/A                                                -> TaxDeclarationController.submit
+  UNKNOWN  N/A                                                -> TaxDeclarationController.success
+  UNKNOWN  N/A                                                -> TransactionController.audit
+  UNKNOWN  N/A                                                -> TransactionController.create
+  UNKNOWN  N/A                                                -> TransactionController.list
+  UNKNOWN  N/A                                                -> UserController.create
+  UNKNOWN  N/A                                                -> UserController.disable
+  UNKNOWN  N/A                                                -> UserController.list
+  UNKNOWN  N/A                                                -> UserController.listRoles
+  UNKNOWN  N/A                                                -> UserController.update
+  UNKNOWN  N/A                                                -> WarehouseController.create
+  UNKNOWN  N/A                                                -> WarehouseController.get
+  UNKNOWN  N/A                                                -> WarehouseController.list
+  UNKNOWN  N/A                                                -> WarehouseController.update
+================================================================================
+✅ 共注册 59 个端点
+
+2025-12-24T02:36:47.191+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        ec1_0.id,
+        ec1_0.address,
+        ec1_0.bank_account,
+        ec1_0.bank_name,
+        ec1_0.email,
+        ec1_0.main_contact,
+        ec1_0.name,
+        ec1_0.phone,
+        ec1_0.status,
+        ec1_0.tax_id,
+        ec1_0.type 
+    from
+        external_contacts ec1_0 
+    where
+        ec1_0.tax_id=? 
+        and ec1_0.status=?
+Hibernate: 
+    select
+        ec1_0.id,
+        ec1_0.address,
+        ec1_0.bank_account,
+        ec1_0.bank_name,
+        ec1_0.email,
+        ec1_0.main_contact,
+        ec1_0.name,
+        ec1_0.phone,
+        ec1_0.status,
+        ec1_0.tax_id,
+        ec1_0.type 
+    from
+        external_contacts ec1_0 
+    where
+        ec1_0.tax_id=? 
+        and ec1_0.status=?
+2025-12-24T02:36:47.196+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        external_contacts
+        (address, bank_account, bank_name, email, main_contact, name, phone, status, tax_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        external_contacts
+        (address, bank_account, bank_name, email, main_contact, name, phone, status, tax_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-12-24T02:36:47.236+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        ec1_0.id,
+        ec1_0.address,
+        ec1_0.bank_account,
+        ec1_0.bank_name,
+        ec1_0.email,
+        ec1_0.main_contact,
+        ec1_0.name,
+        ec1_0.phone,
+        ec1_0.status,
+        ec1_0.tax_id,
+        ec1_0.type 
+    from
+        external_contacts ec1_0 
+    where
+        ec1_0.id=?
+Hibernate: 
+    select
+        ec1_0.id,
+        ec1_0.address,
+        ec1_0.bank_account,
+        ec1_0.bank_name,
+        ec1_0.email,
+        ec1_0.main_contact,
+        ec1_0.name,
+        ec1_0.phone,
+        ec1_0.status,
+        ec1_0.tax_id,
+        ec1_0.type 
+    from
+        external_contacts ec1_0 
+    where
+        ec1_0.id=?
+2025-12-24T02:36:47.244+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    update
+        external_contacts 
+    set
+        address=?,
+        bank_account=?,
+        bank_name=?,
+        email=?,
+        main_contact=?,
+        name=?,
+        phone=?,
+        status=?,
+        tax_id=?,
+        type=? 
+    where
+        id=?
+Hibernate: 
+    update
+        external_contacts 
+    set
+        address=?,
+        bank_account=?,
+        bank_name=?,
+        email=?,
+        main_contact=?,
+        name=?,
+        phone=?,
+        status=?,
+        tax_id=?,
+        type=? 
+    where
+        id=?
+2025-12-24T02:36:47.255+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    select
+        ec1_0.id,
+        ec1_0.address,
+        ec1_0.bank_account,
+        ec1_0.bank_name,
+        ec1_0.email,
+        ec1_0.main_contact,
+        ec1_0.name,
+        ec1_0.phone,
+        ec1_0.status,
+        ec1_0.tax_id,
+        ec1_0.type 
+    from
+        external_contacts ec1_0 
+    where
+        ec1_0.tax_id=? 
+        and ec1_0.status=?
+Hibernate: 
+    select
+        ec1_0.id,
+        ec1_0.address,
+        ec1_0.bank_account,
+        ec1_0.bank_name,
+        ec1_0.email,
+        ec1_0.main_contact,
+        ec1_0.name,
+        ec1_0.phone,
+        ec1_0.status,
+        ec1_0.tax_id,
+        ec1_0.type 
+    from
+        external_contacts ec1_0 
+    where
+        ec1_0.tax_id=? 
+        and ec1_0.status=?
+2025-12-24T02:36:47.256+08:00 DEBUG 39992 --- [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        external_contacts
+        (address, bank_account, bank_name, email, main_contact, name, phone, status, tax_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        external_contacts
+        (address, bank_account, bank_name, email, main_contact, name, phone, status, tax_id, type, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+]]></system-out>
+    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Tan_By\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.17\byte-buddy-agent-1.14.17.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+</testsuite>

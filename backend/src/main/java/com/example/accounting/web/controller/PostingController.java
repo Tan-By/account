@@ -15,7 +15,7 @@ import java.util.List;
  * 过账控制器
  */
 @RestController
-@RequestMapping("/api/posting")
+@RequestMapping("/posting")
 @CrossOrigin
 public class PostingController {
 

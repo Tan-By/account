@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card card--panel fade-in hover-lift">
       <div class="form-row">
         <div class="form-col">
           <label class="form-label">期间开始</label>
@@ -54,9 +54,24 @@
       </div>
     </div>
 
-    <div v-if="activeTab === 'profit'" class="card" style="margin-top: 10px;">
+    <div
+      v-if="!profit && !balance && !cashFlow"
+      class="empty-hero"
+      style="margin-top: 16px;"
+    >
+      <div class="empty-hero__icon">📊</div>
+      <div class="empty-hero__title">尚未生成任何报表</div>
+      <div class="empty-hero__subtitle">
+        选择期间与币种后，点击右上角「生成报表」即可同时生成三大报表。
+      </div>
+      <button class="btn btn--primary btn--pill empty-hero__action" @click="load">
+        生成报表
+      </button>
+    </div>
+
+    <div v-else-if="activeTab === 'profit'" class="card card--panel fade-in hover-lift" style="margin-top: 10px;">
       <div class="card-title">利润表（{{ currencyCode }}）</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <tbody>
           <tr>
             <td colspan="2" style="font-weight: bold; padding-top: 10px;">一、营业收入</td>
@@ -148,9 +163,9 @@
       </table>
     </div>
 
-    <div v-else-if="activeTab === 'balance'" class="card" style="margin-top: 10px;">
+    <div v-else-if="activeTab === 'balance'" class="card card--panel fade-in hover-lift" style="margin-top: 10px;">
       <div class="card-title">资产负债表（{{ currencyCode }}）</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <tbody>
           <tr>
             <td colspan="2" style="font-weight: bold; padding-top: 10px;">资产</td>
@@ -307,9 +322,9 @@
       </table>
     </div>
 
-    <div v-else class="card" style="margin-top: 10px;">
+    <div v-else class="card card--panel fade-in hover-lift" style="margin-top: 10px;">
       <div class="card-title">现金流量表（{{ currencyCode }}）</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <tbody>
           <tr>
             <td colspan="2" style="font-weight: bold; padding-top: 10px;">一、经营活动产生的现金流量</td>

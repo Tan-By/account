@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card card--panel fade-in hover-lift">
       <div class="form-row">
         <div class="form-col">
           <label class="form-label">税种</label>
@@ -36,10 +36,25 @@
       </div>
     </div>
 
-    <div v-if="current" class="card" style="margin-top: 10px;">
+    <div
+      v-if="!current"
+      class="empty-hero"
+      style="margin-top: 16px;"
+    >
+      <div class="empty-hero__icon">🧾</div>
+      <div class="empty-hero__title">尚未生成申报草稿</div>
+      <div class="empty-hero__subtitle">
+        选择税种与申报期间后，点击「生成申报草稿」从系统数据自动汇总。
+      </div>
+      <button class="btn btn--primary btn--pill empty-hero__action" @click="createDraft">
+        生成申报草稿
+      </button>
+    </div>
+
+    <div v-else class="card card--panel fade-in hover-lift" style="margin-top: 10px;">
       <div class="card-title">申报表草稿（ID：{{ current.id }}）</div>
       <div class="card-subtitle">状态：{{ current.status }}</div>
-      <table>
+      <table class="sheet-table table-compact table-quiet">
         <tbody>
           <tr>
             <td style="width: 200px;">计税依据</td>
@@ -65,11 +80,11 @@
       </table>
 
       <div style="margin-top: 8px; display: flex; gap: 8px;">
-        <button class="btn btn--primary" @click="submit" :disabled="current.status !== '草稿'">
+        <button class="btn btn--primary btn--pill" @click="submit" :disabled="current.status !== '草稿'">
           提交申报
         </button>
         <button
-          class="btn btn--ghost"
+          class="btn btn--ghost btn--pill"
           @click="markSuccess"
           :disabled="current.status !== '已提交'"
         >
@@ -142,21 +157,6 @@ onMounted(loadCurrencies);
 </script>
 
 <style scoped>
-.currency-select {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
-  margin-right: 8px;
-}
-
-.currency-select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
-}
 </style>
 
 

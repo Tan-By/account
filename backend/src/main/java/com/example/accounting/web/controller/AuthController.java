@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @CrossOrigin
 public class AuthController {
 
@@ -36,7 +36,9 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-        System.out.println("收到登录请求: " + request.getUsername());
+        System.out.println("🎯 AuthController.login() 被调用!");
+        System.out.println("   用户名: " + request.getUsername());
+        System.out.println("   密码长度: " + (request.getPassword() != null ? request.getPassword().length() : 0));
         try {
             // 验证用户凭证
             authenticationManager.authenticate(

@@ -11,47 +11,61 @@
       </div>
     </div>
 
-    <div class="card">
-      <table>
-        <thead>
-          <tr>
-            <th>名称</th>
-            <th>类型</th>
-            <th>纳税人识别号</th>
-            <th>电话</th>
-            <th>状态</th>
-            <th>操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="c in contacts" :key="c.id">
-            <td>{{ c.name }}</td>
-            <td>{{ c.type }}</td>
-            <td>{{ c.taxId || '-' }}</td>
-            <td>{{ c.phone || '-' }}</td>
-            <td>
-              <span class="badge" :class="c.status === '活跃' ? 'badge--ok' : 'badge--warn'">
-                {{ c.status }}
-              </span>
-            </td>
-            <td>
-              <button class="btn btn--ghost" @click="edit(c)">编辑</button>
-              <button
-                v-if="c.status === '活跃'"
-                class="btn btn--ghost"
-                @click="deactivate(c)"
-              >
-                停用
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card card--panel fade-in hover-lift">
+      <template v-if="contacts.length === 0">
+        <div class="empty-hero">
+          <div class="empty-hero__icon">🤝</div>
+          <div class="empty-hero__title">暂无外部联系人</div>
+          <div class="empty-hero__subtitle">
+            点击右上角「新增联系人」，维护供应商与客户信息，方便后续业务单据选择。
+          </div>
+          <button class="btn btn--primary btn--pill empty-hero__action" @click="openCreate">
+            新增联系人
+          </button>
+        </div>
+      </template>
+      <template v-else>
+        <table class="sheet-table table-compact table-quiet">
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>类型</th>
+              <th>纳税人识别号</th>
+              <th>电话</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="c in contacts" :key="c.id">
+              <td>{{ c.name }}</td>
+              <td>{{ c.type }}</td>
+              <td class="text-right">{{ c.taxId || '-' }}</td>
+              <td class="text-right">{{ c.phone || '-' }}</td>
+              <td>
+                <span class="badge" :class="c.status === '活跃' ? 'badge--ok' : 'badge--warn'">
+                  {{ c.status }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn--ghost btn--pill btn--small" @click="edit(c)">编辑</button>
+                <button
+                  v-if="c.status === '活跃'"
+                  class="btn btn--ghost btn--pill btn--small"
+                  @click="deactivate(c)"
+                >
+                  停用
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
     </div>
 
     <!-- 编辑/新增联系人子窗口 -->
     <div v-if="editing" class="modal-overlay" @click.self="editing = null">
-      <div class="modal-content modal-content--md">
+      <div class="modal-content modal-content--md pop-in">
         <div class="modal-header">
           <div>
             <h3 class="modal-title">{{ editing.id ? '编辑联系人' : '新增联系人' }}</h3>

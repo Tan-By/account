@@ -2,16 +2,25 @@
   <div v-if="route.path === '/login'" class="login-wrapper">
     <RouterView />
   </div>
-  <div v-else class="app-shell">
+  <div v-else :class="['app-shell', { 'app-shell--collapsed': sidebarCollapsed }]">
     <aside class="app-shell__sidebar">
       <div class="app-title">
         <div class="app-title__badge">
           <div class="app-title__badge-inner">AC</div>
         </div>
-        <div>
+        <div class="app-title__text" v-if="!sidebarCollapsed">
           <div class="app-title__text-main">轻量财务系统</div>
           <div class="app-title__text-sub">类 GnuCash · 学习版</div>
         </div>
+        <button
+          class="sidebar-toggle"
+          type="button"
+          @click="toggleSidebar"
+          :aria-label="sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'"
+        >
+          <span v-if="sidebarCollapsed">›</span>
+          <span v-else>‹</span>
+        </button>
       </div>
 
       <div style="margin-top: 16px;">
@@ -140,7 +149,7 @@
         </ul>
       </div>
 
-      <div class="nav-footer">
+      <div class="sidebar-footer">
         <div>课程实验 · 基于 GnuCash 思路</div>
         <div>后端 Spring Boot · 前端 Vue3</div>
       </div>
@@ -187,6 +196,7 @@ const route = useRoute();
 const router = useRouter();
 
 const userName = ref<string>('');
+const sidebarCollapsed = ref<boolean>(false);
 
 const updateUserName = () => {
   userName.value = localStorage.getItem('name') || localStorage.getItem('username') || '';
@@ -215,6 +225,10 @@ const handleLogout = () => {
   logout();
   userName.value = '';
   router.push('/login');
+};
+
+const toggleSidebar = () => {
+  sidebarCollapsed.value = !sidebarCollapsed.value;
 };
 </script>
 
