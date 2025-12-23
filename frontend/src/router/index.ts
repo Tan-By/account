@@ -10,6 +10,8 @@ import UsersView from '../views/UsersView.vue';
 import ContactsView from '../views/ContactsView.vue';
 import PostingView from '../views/PostingView.vue';
 import LoginView from '../views/LoginView.vue';
+import PurchaseOrdersView from '../views/PurchaseOrdersView.vue';
+import SalesOrdersView from '../views/SalesOrdersView.vue';
 
 const routes: RouteRecordRaw[] = [
   { 
@@ -76,6 +78,18 @@ const routes: RouteRecordRaw[] = [
     path: '/contacts', 
     name: 'contacts', 
     component: ContactsView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/purchase-orders', 
+    name: 'purchase-orders', 
+    component: PurchaseOrdersView,
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/sales-orders', 
+    name: 'sales-orders', 
+    component: SalesOrdersView,
     meta: { requiresAuth: true }
   }
 ];

@@ -73,6 +73,26 @@
               外部联系人
             </RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink
+              to="/purchase-orders"
+              class="nav-link"
+              :class="{ 'nav-link--active': isActive('/purchase-orders') }"
+            >
+              <span class="nav-link__bullet"></span>
+              订货单管理
+            </RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink
+              to="/sales-orders"
+              class="nav-link"
+              :class="{ 'nav-link--active': isActive('/sales-orders') }"
+            >
+              <span class="nav-link__bullet"></span>
+              销售单管理
+            </RouterLink>
+          </li>
         </ul>
 
         <div class="nav-group-title">对账与报表</div>

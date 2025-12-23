@@ -49,8 +49,8 @@ public class PostingService {
             throw new IllegalArgumentException("请选择要过账的凭证");
         }
 
-        // 查询所有选定的凭证
-        List<Transaction> vouchers = transactionRepository.findAllById(voucherIds);
+        // 查询所有选定的凭证（使用 EntityGraph 预加载关联对象）
+        List<Transaction> vouchers = transactionRepository.findAllByIdWithGraph(voucherIds);
         
         if (vouchers.size() != voucherIds.size()) {
             throw new IllegalArgumentException("部分凭证不存在");
@@ -70,46 +70,69 @@ public class PostingService {
         // 执行过账：更新凭证状态、更新账户余额
         int successCount = 0;
         for (Transaction voucher : vouchers) {
-            // 更新凭证状态为"已过账"
-            voucher.setStatus(VoucherStatus.POSTED);
-            
-            // 将凭证分录数据记入相应的明细账簿（这里通过更新账户余额实现）
-            // 更新相关科目的总账余额
-            for (TransactionEntry entry : voucher.getEntries()) {
-                Account account = entry.getAccount();
-                BigDecimal currentBalance = account.getBalance();
-                BigDecimal amount = entry.getAmount();
-                
-                // 根据借贷方向更新余额
-                // 资产、支出类账户：借方增加，贷方减少
-                // 负债、权益、收入类账户：贷方增加，借方减少
-                if (entry.getDebitCredit() == DebitCredit.DEBIT) {
-                    // 借方：资产、支出类增加，负债、权益、收入类减少
-                    if (account.getType().name().equals("ASSET") || account.getType().name().equals("EXPENSE")) {
-                        account.setBalance(currentBalance.add(amount));
-                    } else {
-                        account.setBalance(currentBalance.subtract(amount));
-                    }
-                } else {
-                    // 贷方：负债、权益、收入类增加，资产、支出类减少
-                    if (account.getType().name().equals("LIABILITY") || 
-                        account.getType().name().equals("EQUITY") || 
-                        account.getType().name().equals("INCOME")) {
-                        account.setBalance(currentBalance.add(amount));
-                    } else {
-                        account.setBalance(currentBalance.subtract(amount));
-                    }
+            try {
+                // 检查凭证是否有分录
+                if (voucher.getEntries() == null || voucher.getEntries().isEmpty()) {
+                    throw new IllegalArgumentException("凭证#" + voucher.getId() + "没有分录，无法过账");
                 }
                 
-                accountRepository.save(account);
+                // 更新凭证状态为"已过账"
+                voucher.setStatus(VoucherStatus.POSTED);
+                
+                // 将凭证分录数据记入相应的明细账簿（这里通过更新账户余额实现）
+                // 更新相关科目的总账余额
+                for (TransactionEntry entry : voucher.getEntries()) {
+                    if (entry == null) {
+                        continue;
+                    }
+                    
+                    Account account = entry.getAccount();
+                    if (account == null) {
+                        throw new IllegalArgumentException("凭证#" + voucher.getId() + "的分录缺少账户信息");
+                    }
+                    
+                    BigDecimal currentBalance = account.getBalance();
+                    BigDecimal amount = entry.getAmount();
+                    if (amount == null) {
+                        throw new IllegalArgumentException("凭证#" + voucher.getId() + "的分录金额为空");
+                    }
+                    
+                    // 根据借贷方向更新余额
+                    // 资产、支出类账户：借方增加，贷方减少
+                    // 负债、权益、收入类账户：贷方增加，借方减少
+                    if (entry.getDebitCredit() == DebitCredit.DEBIT) {
+                        // 借方：资产、支出类增加，负债、权益、收入类减少
+                        if (account.getType().name().equals("ASSET") || account.getType().name().equals("EXPENSE")) {
+                            account.setBalance(currentBalance.add(amount));
+                        } else {
+                            account.setBalance(currentBalance.subtract(amount));
+                        }
+                    } else {
+                        // 贷方：负债、权益、收入类增加，资产、支出类减少
+                        if (account.getType().name().equals("LIABILITY") || 
+                            account.getType().name().equals("EQUITY") || 
+                            account.getType().name().equals("INCOME")) {
+                            account.setBalance(currentBalance.add(amount));
+                        } else {
+                            account.setBalance(currentBalance.subtract(amount));
+                        }
+                    }
+                    
+                    accountRepository.save(account);
+                }
+                
+                transactionRepository.save(voucher);
+                successCount++;
+            } catch (Exception e) {
+                // 记录错误但继续处理其他凭证
+                throw new IllegalArgumentException("过账凭证#" + voucher.getId() + "时出错: " + e.getMessage(), e);
             }
-            
-            transactionRepository.save(voucher);
-            successCount++;
         }
 
         return successCount;
     }
 }
+
+
 
 

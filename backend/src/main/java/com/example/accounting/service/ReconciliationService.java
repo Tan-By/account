@@ -2,6 +2,9 @@ package com.example.accounting.service;
 
 import com.example.accounting.domain.*;
 import com.example.accounting.repository.*;
+import com.example.accounting.domain.enums.VoucherStatus;
+import com.example.accounting.web.dto.reconciliation.BankRecordDto;
+import com.example.accounting.web.dto.reconciliation.BookEntryDto;
 import com.example.accounting.web.dto.reconciliation.ReconciliationRequest;
 import com.example.accounting.web.dto.reconciliation.ReconciliationResultDto;
 import org.springframework.stereotype.Service;
@@ -79,7 +82,17 @@ public class ReconciliationService {
         int unmatchedBankCount = bankRecords.size() - matchedCount;
         int unmatchedBookCount = bookEntries.size() - matchedBookIds.size();
 
-        BigDecimal bankBalance = bankAccount.getBalance(); // 简化：直接使用账面余额作为银行余额
+        // 银行余额：若流水有 balance 字段则取最新一条，否则回退到账面余额
+        BigDecimal bankBalance = bankAccount.getBalance();
+        if (!bankRecords.isEmpty()) {
+            BankStatementRecord latest = bankRecords.stream()
+                    .sorted((a, b) -> b.getDate().compareTo(a.getDate()))
+                    .findFirst()
+                    .orElse(null);
+            if (latest != null && latest.getBalance() != null) {
+                bankBalance = latest.getBalance();
+            }
+        }
         BigDecimal bookBalance = bankAccount.getBalance();
         
         // 如果指定了显示币种，则转换余额
@@ -87,13 +100,14 @@ public class ReconciliationService {
         if (request.getDisplayCurrency() != null && !request.getDisplayCurrency().isEmpty()) {
             displayCurr = currencyRepository.findByCode(request.getDisplayCurrency()).orElse(null);
         }
+        final Currency displayCurrFinal = displayCurr;
         if (displayCurr != null && !bankAccount.getCurrency().getId().equals(displayCurr.getId())) {
             LocalDate today = LocalDate.now();
             bankBalance = convert(bankBalance, bankAccount.getCurrency(), displayCurr, today);
             bookBalance = convert(bookBalance, bankAccount.getCurrency(), displayCurr, today);
         }
 
-        // 未达账项汇总（简化：只按数量统计，不细分四种类型）
+        // 未达账项汇总（简化：不细分类型，仅以余额差额体现）
         BigDecimal diff = bankBalance.subtract(bookBalance);
 
         ReconciliationTask task = new ReconciliationTask();
@@ -114,6 +128,60 @@ public class ReconciliationService {
         result.setBankBalance(bankBalance);
         result.setAdjustedBookBalance(bookBalance.add(diff));
         result.setAdjustedBankBalance(bankBalance);
+
+        // 构建银行流水明细 DTO
+        result.setBankRecords(
+                bankRecords.stream().map(br -> {
+                    BankRecordDto dto = new BankRecordDto();
+                    dto.setId(br.getId());
+                    dto.setDate(br.getDate());
+                    dto.setDescription(br.getDescription());
+                    dto.setReference(br.getReference());
+                    dto.setMatchStatus(matchedBankIds.contains(br.getId()) ? "已匹配" : "未匹配");
+
+                    BigDecimal debit = br.getDebitAmount();
+                    BigDecimal credit = br.getCreditAmount();
+                    BigDecimal balanceVal = br.getBalance();
+                    if (displayCurrFinal != null && !bankAccount.getCurrency().getId().equals(displayCurrFinal.getId())) {
+                        LocalDate today = LocalDate.now();
+                        if (debit != null) {
+                            debit = convert(debit, bankAccount.getCurrency(), displayCurrFinal, today);
+                        }
+                        if (credit != null) {
+                            credit = convert(credit, bankAccount.getCurrency(), displayCurrFinal, today);
+                        }
+                        if (balanceVal != null) {
+                            balanceVal = convert(balanceVal, bankAccount.getCurrency(), displayCurrFinal, today);
+                        }
+                    }
+                    dto.setDebitAmount(debit);
+                    dto.setCreditAmount(credit);
+                    dto.setBalance(balanceVal);
+                    return dto;
+                }).toList()
+        );
+
+        // 构建账面分录明细 DTO
+        result.setBookEntries(
+                bookEntries.stream().map(te -> {
+                    BookEntryDto dto = new BookEntryDto();
+                    dto.setId(te.getId());
+                    dto.setTransactionId(te.getTransaction().getId());
+                    dto.setDate(te.getTransaction().getDate());
+                    dto.setDescription(te.getTransaction().getDescription());
+                    dto.setDebitCredit(te.getDebitCredit());
+                    dto.setVoucherStatus(Optional.ofNullable(te.getTransaction().getStatus()).map(VoucherStatus::name).orElse(null));
+                    dto.setMatchStatus(matchedBookIds.contains(te.getId()) ? "已匹配" : "未匹配");
+
+                    BigDecimal amount = te.getAmount();
+                    if (displayCurrFinal != null && !bankAccount.getCurrency().getId().equals(displayCurrFinal.getId())) {
+                        LocalDate today = LocalDate.now();
+                        amount = convert(amount, bankAccount.getCurrency(), displayCurrFinal, today);
+                    }
+                    dto.setAmount(amount);
+                    return dto;
+                }).toList()
+        );
         return result;
     }
     

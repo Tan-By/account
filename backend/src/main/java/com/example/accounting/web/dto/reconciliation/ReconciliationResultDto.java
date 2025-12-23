@@ -22,6 +22,16 @@ public class ReconciliationResultDto {
     private BigDecimal adjustedBookBalance;
 
     private BigDecimal adjustedBankBalance;
+
+    /**
+     * 银行流水明细（带匹配状态）
+     */
+    private java.util.List<BankRecordDto> bankRecords;
+
+    /**
+     * 账面分录明细（带匹配状态）
+     */
+    private java.util.List<BookEntryDto> bookEntries;
 }
 
 

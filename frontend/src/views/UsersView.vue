@@ -45,42 +45,53 @@
       </table>
     </div>
 
-    <div v-if="editing" class="card" style="margin-top: 10px;">
-      <div class="card-title">{{ editing.id ? '编辑用户' : '新增用户' }}</div>
-      <div class="form-row">
-        <div class="form-col">
-          <label class="form-label">姓名</label>
-          <input v-model="editing.name" />
+    <!-- 新增/编辑用户：子窗口 -->
+    <div v-if="editing" class="modal-overlay" @click.self="editing = null">
+      <div class="modal-content modal-content--md">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">{{ editing.id ? '编辑用户' : '新增用户' }}</h3>
+            <p class="modal-subtitle">设置基础信息与角色，未启用的字段保持为空</p>
+          </div>
+          <button class="modal-close" @click="editing = null">×</button>
         </div>
-        <div class="form-col">
-          <label class="form-label">用户名</label>
-          <input v-model="editing.username" />
-        </div>
-        <div class="form-col" v-if="!editing.id">
-          <label class="form-label">初始密码</label>
-          <input v-model="editing.password" type="password" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-col">
-          <label class="form-label">部门</label>
-          <input v-model="editing.department" />
-        </div>
-        <div class="form-col">
-          <label class="form-label">角色</label>
-          <select v-model="selectedRoles" multiple style="min-height: 80px;">
-            <option v-for="role in availableRoles" :key="role" :value="role">
-              {{ role }}
-            </option>
-          </select>
-          <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">
-            按住 Ctrl (Windows) 或 Cmd (Mac) 键可多选
+        <div class="modal-body">
+          <div class="form-grid form-grid--three">
+            <div class="form-item">
+              <label class="form-label">姓名 *</label>
+              <input v-model="editing.name" placeholder="请输入姓名" />
+            </div>
+            <div class="form-item">
+              <label class="form-label">用户名 *</label>
+              <input v-model="editing.username" placeholder="登录用户名" />
+            </div>
+            <div class="form-item" v-if="!editing.id">
+              <label class="form-label">初始密码 *</label>
+              <input v-model="editing.password" type="password" placeholder="至少 6 位" />
+            </div>
+          </div>
+          <div class="form-grid form-grid--two">
+            <div class="form-item">
+              <label class="form-label">部门</label>
+              <input v-model="editing.department" placeholder="如：财务部/销售部" />
+            </div>
+            <div class="form-item">
+              <label class="form-label">角色</label>
+              <select v-model="selectedRoles" multiple class="multiselect">
+                <option v-for="role in availableRoles" :key="role" :value="role">
+                  {{ role }}
+                </option>
+              </select>
+              <div class="field-hint">按住 Ctrl (Windows) 或 Cmd (Mac) 键可多选</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div style="margin-top: 8px; display: flex; gap: 8px;">
-        <button class="btn btn--primary" @click="save">保存</button>
-        <button class="btn btn--ghost" @click="editing = null">取消</button>
+        <div class="modal-footer">
+          <div class="modal-actions">
+            <button class="btn btn--ghost" @click="editing = null">取消</button>
+            <button class="btn btn--primary" @click="save">保存</button>
+          </div>
+        </div>
       </div>
     </div>
 

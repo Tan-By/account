@@ -50,14 +50,16 @@ public class AccountInitializer implements CommandLineRunner {
         AccountData[] accounts = {
             // 资产类
             new AccountData("1001", "库存现金", AccountType.ASSET, null),
-            new AccountData("1002", "银行存款", AccountType.ASSET, null),
+            // 预置一个模拟银行账户，便于银行对账演示
+            new AccountData("1002", "模拟银行账户", AccountType.ASSET, null),
             new AccountData("1122", "应收账款", AccountType.ASSET, null),
             new AccountData("1221", "其他应收款", AccountType.ASSET, null),
             new AccountData("1401", "材料采购", AccountType.ASSET, null),
             new AccountData("1403", "原材料", AccountType.ASSET, null),
             new AccountData("1405", "库存商品", AccountType.ASSET, null),
             new AccountData("1601", "固定资产", AccountType.ASSET, null),
-            new AccountData("1602", "累计折旧", AccountType.ASSET, "1601"),
+            // 累计折旧应为抵减科目，不从属于固定资产，置为顶级科目
+            new AccountData("1602", "累计折旧", AccountType.ASSET, null),
             new AccountData("1801", "长期待摊费用", AccountType.ASSET, null),
             // 负债类
             new AccountData("2001", "短期借款", AccountType.LIABILITY, null),

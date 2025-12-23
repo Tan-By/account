@@ -49,4 +49,41 @@ export const logout = () => {
   localStorage.removeItem('name');
 };
 
+// 订货单API
+export const purchaseOrderApi = {
+  list: () => api.get('/purchase-orders'),
+  get: (id: number) => api.get(`/purchase-orders/${id}`),
+  create: (data: any) => api.post('/purchase-orders', data),
+  submit: (id: number) => api.post(`/purchase-orders/${id}/submit`),
+  approve: (id: number, data: any) => api.post(`/purchase-orders/${id}/approve`, data),
+  deliver: (id: number, data: any[]) => api.post(`/purchase-orders/${id}/deliver`, data),
+};
+
+// 销售单API
+export const salesOrderApi = {
+  list: () => api.get('/sales-orders'),
+  get: (id: number) => api.get(`/sales-orders/${id}`),
+  create: (data: any) => api.post('/sales-orders', data),
+  submit: (id: number) => api.post(`/sales-orders/${id}/submit`),
+  audit: (id: number, data: any) => api.post(`/sales-orders/${id}/audit`, data),
+  ship: (id: number, data: any[]) => api.post(`/sales-orders/${id}/ship`, data),
+  payment: (id: number, data: any) => api.post(`/sales-orders/${id}/payment`, data),
+};
+
+// 商品API
+export const productApi = {
+  list: (enabled?: boolean) => api.get('/products', { params: { enabled } }),
+  get: (id: number) => api.get(`/products/${id}`),
+  create: (data: any) => api.post('/products', data),
+  update: (id: number, data: any) => api.put(`/products/${id}`, data),
+};
+
+// 仓库API
+export const warehouseApi = {
+  list: (enabled?: boolean) => api.get('/warehouses', { params: { enabled } }),
+  get: (id: number) => api.get(`/warehouses/${id}`),
+  create: (data: any) => api.post('/warehouses', data),
+  update: (id: number, data: any) => api.put(`/warehouses/${id}`, data),
+};
+
 

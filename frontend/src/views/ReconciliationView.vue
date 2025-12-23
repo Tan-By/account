@@ -89,6 +89,68 @@
       </table>
     </div>
 
+    <!-- 银行流水明细 -->
+    <div v-if="result?.bankRecords?.length" class="card" style="margin-top: 10px;">
+      <div class="card-title">银行流水明细</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 110px;">日期</th>
+            <th>摘要</th>
+            <th style="width: 110px;" class="text-right">借方</th>
+            <th style="width: 110px;" class="text-right">贷方</th>
+            <th style="width: 110px;" class="text-right">余额</th>
+            <th style="width: 100px;">状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in result.bankRecords" :key="row.id">
+            <td>{{ formatDate(row.date) }}</td>
+            <td>{{ row.description || '-' }}</td>
+            <td class="text-right">{{ formatAmount(row.debitAmount) }}</td>
+            <td class="text-right">{{ formatAmount(row.creditAmount) }}</td>
+            <td class="text-right">{{ formatAmount(row.balance) }}</td>
+            <td>
+              <span class="badge" :class="row.matchStatus === '已匹配' ? 'badge--ok' : 'badge--warn'">
+                {{ row.matchStatus || '未匹配' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 账面分录明细 -->
+    <div v-if="result?.bookEntries?.length" class="card" style="margin-top: 10px;">
+      <div class="card-title">账面分录明细</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 110px;">日期</th>
+            <th>摘要</th>
+            <th style="width: 90px;">借/贷</th>
+            <th style="width: 120px;" class="text-right">金额</th>
+            <th style="width: 110px;">凭证状态</th>
+            <th style="width: 100px;">状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in result.bookEntries" :key="row.id">
+            <td>{{ formatDate(row.date) }}</td>
+            <td>{{ row.description || '-' }}</td>
+            <td>{{ row.debitCredit === 'DEBIT' ? '借' : '贷' }}</td>
+            <td class="text-right">{{ formatAmount(row.amount) }}</td>
+            <td>{{ row.voucherStatus || '-' }}</td>
+            <td>
+              <span class="badge" :class="row.matchStatus === '已匹配' ? 'badge--ok' : 'badge--warn'">
+                {{ row.matchStatus || '未匹配' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- 新增银行账户模态框 -->
     <div v-if="showAddBankAccountModal" class="modal-overlay" @click.self="closeAddBankAccountModal">
       <div class="modal-content">
@@ -153,9 +215,29 @@ const messageType = ref<'ok' | 'error'>('ok');
 
 const result = ref<any>(null);
 
+const formatAmount = (amount?: number) => {
+  if (amount === undefined || amount === null) return '-';
+  return Number(amount).toFixed(2);
+};
+
+const formatDate = (date?: string) => {
+  if (!date) return '-';
+  return new Date(date).toLocaleDateString('zh-CN');
+};
+
 const loadBankAccounts = async () => {
   const resp = await api.get('/accounts');
-  bankAccounts.value = resp.data.filter((a: any) => a.type === 'ASSET');
+  // 筛选真正的银行账户：名称包含"银行"或"存款"的资产账户
+  bankAccounts.value = resp.data.filter((a: any) => {
+    if (a.type !== 'ASSET' || !a.enabled) {
+      return false;
+    }
+    const name = (a.name || '').toLowerCase();
+    return name.includes('银行') || name.includes('存款') || name.includes('bank');
+  });
+  if (!bankAccountId.value && bankAccounts.value.length > 0) {
+    bankAccountId.value = bankAccounts.value[0].id;
+  }
 };
 
 const loadCurrencies = async () => {

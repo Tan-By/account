@@ -49,42 +49,55 @@
       </table>
     </div>
 
-    <div v-if="editing" class="card" style="margin-top: 10px;">
-      <div class="card-title">{{ editing.id ? '编辑联系人' : '新增联系人' }}</div>
-      <div class="form-row">
-        <div class="form-col">
-          <label class="form-label">名称</label>
-          <input v-model="editing.name" />
+    <!-- 编辑/新增联系人子窗口 -->
+    <div v-if="editing" class="modal-overlay" @click.self="editing = null">
+      <div class="modal-content modal-content--md">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title">{{ editing.id ? '编辑联系人' : '新增联系人' }}</h3>
+            <p class="modal-subtitle">完善联系人基础信息，便于后续单据选择</p>
+          </div>
+          <button class="modal-close" @click="editing = null">×</button>
         </div>
-        <div class="form-col">
-          <label class="form-label">类型</label>
-          <select v-model="editing.type">
-            <option value="供应商">供应商</option>
-            <option value="客户">客户</option>
-          </select>
+        <div class="modal-body">
+          <div class="form-grid form-grid--three">
+            <div class="form-item">
+              <label class="form-label">名称 *</label>
+              <input v-model="editing.name" placeholder="请输入联系人名称" />
+            </div>
+            <div class="form-item">
+              <label class="form-label">类型 *</label>
+              <select v-model="editing.type">
+                <option value="供应商">供应商</option>
+                <option value="客户">客户</option>
+              </select>
+            </div>
+            <div class="form-item">
+              <label class="form-label">纳税人识别号</label>
+              <input v-model="editing.taxId" placeholder="选填" />
+            </div>
+          </div>
+          <div class="form-grid form-grid--three">
+            <div class="form-item">
+              <label class="form-label">电话</label>
+              <input v-model="editing.phone" placeholder="联系人电话" />
+            </div>
+            <div class="form-item">
+              <label class="form-label">开户行</label>
+              <input v-model="editing.bankName" placeholder="如：招商银行" />
+            </div>
+            <div class="form-item">
+              <label class="form-label">银行账号</label>
+              <input v-model="editing.bankAccount" placeholder="银行卡号" />
+            </div>
+          </div>
         </div>
-        <div class="form-col">
-          <label class="form-label">纳税人识别号</label>
-          <input v-model="editing.taxId" />
+        <div class="modal-footer">
+          <div class="modal-actions">
+            <button class="btn btn--ghost" @click="editing = null">取消</button>
+            <button class="btn btn--primary" @click="save">保存</button>
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-col">
-          <label class="form-label">电话</label>
-          <input v-model="editing.phone" />
-        </div>
-        <div class="form-col">
-          <label class="form-label">开户行</label>
-          <input v-model="editing.bankName" />
-        </div>
-        <div class="form-col">
-          <label class="form-label">银行账号</label>
-          <input v-model="editing.bankAccount" />
-        </div>
-      </div>
-      <div style="margin-top: 8px; display: flex; gap: 8px;">
-        <button class="btn btn--primary" @click="save">保存</button>
-        <button class="btn btn--ghost" @click="editing = null">取消</button>
       </div>
     </div>
   </div>
