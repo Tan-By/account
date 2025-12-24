@@ -1,16 +1,17 @@
 ## 轻量财务系统（类 GnuCash 教学版）
 
-基于你提供的 7 个用例规约，参考开源项目 **GnuCash** 的理念，实现的一个**教学用**小型财务系统：
+基于你提供的用例规约，参考开源项目 **GnuCash** 的理念，实现的一个**教学用**小型财务系统：
 
-- **后端**：Spring Boot 3 + Spring Data JPA + Spring Security（仅基础配置）+ H2 内存数据库  
+- **后端**：Spring Boot 3 + Spring Data JPA + Spring Security + JWT + H2 内存数据库  
 - **前端**：Vue 3 + Vite + TypeScript + Axios  
-- **特性**：支持多币种账户、复式记账、报表生成、银行对账、税务申报、内外部人员管理  
+- **特性**：支持多币种账户、复式记账、报表生成、银行对账、税务申报、内外部人员管理；  
+  同时额外扩展了**登录鉴权（JWT）**、**凭证审核与过账（UC008）**以及**进销存示例用例（采购单 / 销售单 / 商品与仓库管理）**。
 
-本项目重点是**用例到系统实现的完整链路**，适合作为“系统分析与设计”课程的大作业/实验展示。
+本项目重点是**用例到系统实现的完整链路**，适合作为“系统分析与设计”课程的大作业 / 实验展示。
 
 ---
 
-### 一、功能一览（对应 7 个用例）
+### 一、功能一览（对应原始 7 个用例 + 扩展用例）
 
 - **US007 初始化企业**  
   - 设置账套信息（企业名称、默认币种、启用日期）  
@@ -83,13 +84,43 @@
   - 规则：  
     - 用户名唯一；  
     - 密码使用 BCrypt 加密存储；  
-    - 禁用用户后不可登录（当前示例未做登录页面，只做管理接口演示）。  
+    - 禁用用户后不可登录。  
   - 接口：  
     - `GET /api/users`  
     - `POST /api/users`（创建用户）  
     - `PUT /api/users/{id}`（修改用户与角色）  
     - `POST /api/users/{id}/disable`（禁用）  
   - 前端页面：`用户与权限` → `UsersView.vue`
+
+- **登录 / 鉴权（扩展）**  
+  - 通过 `/auth/login` 完成用户名密码登录，后端签发 JWT，前端保存到 `localStorage`。  
+  - 前端通过 Axios 请求拦截器自动在除登录接口外的所有请求上附加 `Authorization: Bearer <token>`。  
+  - 路由基于 `meta.requiresAuth` 做前端守卫，未登录或 Token 失效会自动跳转到登录页。  
+  - 默认账号：`admin / admin123`。  
+  - 接口：`POST /auth/login`  
+  - 前端页面：`登录` → `LoginView.vue`
+
+- **UC008 凭证过账（扩展）**  
+  - 基于记账产生的凭证，增加“未审核 / 已审核 / 已过账”三态。  
+  - 支持**批量审核**、**批量过账**，并通过状态与徽标颜色区分不同阶段。  
+  - 接口：  
+    - `GET /api/posting/pending`（待过账凭证列表）  
+    - `POST /api/posting/execute`（执行过账）  
+    - `POST /api/transactions/{id}/audit`（单笔 / 批量审核）  
+  - 前端页面：`凭证过账（UC008）` → `PostingView.vue`
+
+- **进销存相关示例用例（扩展，可选展示）**  
+  - 采购单：从“草稿 → 已提交 → 审批通过 → 到货入库”的简化流程。  
+  - 销售单：从“草稿 → 已提交 → 审核 → 发货 → 收款”的简化流程。  
+  - 商品与仓库管理：用于支撑采购 / 销售场景的基础主数据。  
+  - 接口（示例）：  
+    - 采购单：`/api/purchase-orders/**`  
+    - 销售单：`/api/sales-orders/**`  
+    - 商品：`/api/products/**`  
+    - 仓库：`/api/warehouses/**`  
+  - 前端页面：  
+    - `采购单` → `PurchaseOrdersView.vue`  
+    - `销售单` → `SalesOrdersView.vue`  
 
 ---
 
@@ -101,22 +132,28 @@
     - `Company`、`ExternalContact`、`BankStatementRecord`、`ReconciliationTask`  
     - `TaxDeclaration`、`UserAccount`、`Role` 等实体  
   - `repository/`：JPA 仓储接口  
-  - `service/`：业务服务（初始化、记账、报表、对账、税务申报、用户管理）  
+  - `service/`：业务服务（初始化、记账、报表、对账、税务申报、用户管理、进销存、凭证过账等）  
   - `web/controller/`：REST 控制器，对应前端所有按钮操作  
-  - `web/dto/`：接口请求/响应 DTO  
-  - `config/SecurityConfig`：关闭 CSRF，放行 H2 控制台和 Swagger，其他接口默认允许访问（便于课程演示）  
+  - `web/dto/`：接口请求 / 响应 DTO  
+  - `config/SecurityConfig`：  
+    - 使用 Spring Security + JWT 实现**无状态鉴权**；  
+    - 暴露 `/auth/**` 登录接口和 H2 控制台、Swagger 等白名单；  
+    - 其他业务接口默认要求携带有效 JWT；  
+    - 配套的 `JwtAuthenticationFilter`、`JwtAuthenticationEntryPoint`、`UserDetailsServiceImpl`、`JwtUtil` 等负责 Token 生成、校验与异常处理。  
   - `src/test/java/com/example/accounting/`：若干集成测试类，覆盖初始化+记账、外部联系人、报表+对账、税务+用户管理等流程  
 
 - `frontend/`：Vue 3 前端  
   - `src/main.ts`：应用入口，挂载路由与全局样式  
-  - `src/router/index.ts`：路由与菜单映射（总览 + 7 大用例页面）  
+  - `src/router/index.ts`：路由与菜单映射（登录页 + 总览 + 7 大用例页面 + 扩展用例页面）  
   - `src/App.vue`：布局框架（左侧导航 + 顶部条 + 右侧主工作区），风格参考 Google 原生应用  
   - `src/views/*.vue`：  
+    - `LoginView`：登录页（输入用户名密码，获取 JWT）  
     - `DashboardView`：总览（显示初始化状态、账户数等）  
-    - `InitCompanyView`、`AccountsView`、`TransactionsView`  
+    - `InitCompanyView`、`AccountsView`、`TransactionsView`、`PostingView`（UC008 凭证过账）  
     - `ReportsView`、`ReconciliationView`、`TaxView`  
     - `UsersView`、`ContactsView`  
-  - `src/api.ts`：Axios 实例，统一以 `/api` 访问后端  
+    - `PurchaseOrdersView`、`SalesOrdersView`（进销存扩展示例）  
+  - `src/api.ts`：Axios 实例与封装的 `login` / `logout`、进销存相关 API，统一以 `/api` 访问后端并自动附加 JWT Token  
   - `src/styles.scss`：全局样式，浅色、扁平、轻量动效风格
 
 ---
@@ -148,9 +185,19 @@ npm run dev
 浏览器访问 `http://localhost:5173` 即可打开前端界面。  
 `vite.config.mts` 中已配置将 `/api` 代理到 `http://localhost:8080`。
 
+> **登录提示**  
+> - 首次打开会自动跳转到 `/login` 登录页。  
+> - 默认账号密码：`admin / admin123`。  
+> - 登录成功后跳转到总览页，之后所有业务请求都通过 JWT 进行鉴权。
+
 ---
 
 ### 四、推荐演示流程（给老师看用）
+
+0. **登录（JWT 鉴权演示）**  
+   - 打开前端：浏览器自动跳转到 `/login`；  
+   - 使用默认账号 `admin / admin123` 登录，展示登录失败 / 成功时的提示效果；  
+   - 登录成功后进入“总览”页，并简单说明前后端如何通过 JWT 保持会话。  
 
 1. **初始化企业（US007）**  
    - 进入“初始化企业”页面，保持示例数据（资产“现金”1000、权益“实收资本”1000）；  
@@ -186,6 +233,14 @@ npm run dev
    - 修改该用户的部门、角色；  
    - 最后演示“禁用”操作（状态由“启用”变为“禁用”），强调密码加密存储与权限分离设计思路。
 
+8. **凭证审核与过账（UC008，扩展）**  
+   - 在“记账（凭证）”中录入几张业务凭证，初始状态为“未审核”；  
+   - 进入“凭证过账（UC008）”页面，演示：  
+     - 标签页切换“未审核 / 已审核”；  
+     - 单张凭证审核 / 批量审核；  
+     - 已审核凭证批量过账；  
+   - 打开任意一张凭证详情，对照分录说明“审核 / 过账”的差异和业务含义。
+
 ---
 
 ### 五、可以进一步扩展的方向（可选）
@@ -197,6 +252,5 @@ npm run dev
 
 ---
 
-如需我帮你根据老师的具体要求再裁剪或强化某个用例（例如只重点展示 3–4 个用例），可以在此 README 基础上继续调整。**
-
+如需我根据老师的具体要求再裁剪或强化某个用例（例如只重点展示 3–4 个用例），可以在此 README 基础上继续调整。
 
